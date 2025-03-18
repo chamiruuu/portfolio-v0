@@ -1,39 +1,46 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/NavBar.module.css';
 
-const NavBar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+const Navbar = () => {
+  const [collapsed, setCollapsed] = useState(false);
 
+  useEffect(() => {
     const handleScroll = () => {
-        if (window.scrollY > 50) {
-            setIsCollapsed(true);
-        } else {
-            setIsCollapsed(false);
-        }
+      const isCollapsed = window.scrollY > 50;
+      setCollapsed(isCollapsed);
     };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check in case the page is loaded scrolled down
 
-    return (
-        <nav className={`${styles.navbar} ${isCollapsed ? styles.collapsed : ''}`} id="navbar">
-            <div className={`${styles.logo} ${isCollapsed ? styles.hidden : ''}`} id="logo"><img src="src/assets/logo.svg" /></div>
-            <ul className={styles.navLinks} id="nav-links">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">PROJECTS</a></li>
-                <li><a href="#">CONTACT</a></li>
-            </ul>
-            <div className={`${styles.iconButtons} ${isCollapsed ? styles.hidden : ''}`} id="icon-buttons">
-                <button className={styles.iconBtn} id="theme-toggle"><img src="src/assets/light_mode.svg" /></button>
-                <button className={styles.iconBtn} id="language-toggle"><img src="src/assets/language_us.svg" /></button>
-            </div>
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <header className={`${styles.navbar} ${collapsed ? styles.collapsed : ''}`}>
+      <div className={styles.navbarContainer}>
+        <div className={`${styles.logo} ${collapsed ? styles.hidden : ''}`}>
+          <a href="/">LOGO</a>
+        </div>
+
+        <nav className={styles.navLinks}>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </nav>
-    );
-}
 
-export default NavBar;
+        <div className={`${styles.actionIcons} ${collapsed ? styles.hidden : ''}`}>
+          <a href="#search" className={styles.icon}>🔍</a>
+          <a href="#account" className={styles.icon}>👤</a>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;

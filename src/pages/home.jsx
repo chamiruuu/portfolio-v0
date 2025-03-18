@@ -3,8 +3,7 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <p>This is the home page of my portfolio website.</p>
-      <h1>Welcome to the page!</h1>
+      <h1>Welcome to ddddthe page!</h1>
                 <p>Scroll down to see the navbar collapse.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus. Nulla facilisi. Pellentesque vehicula dolor nec mi faucibus, et interdum augue facilisis. Nam sit amet bibendum sapien. Vivamus nec sapien in urna varius fermentum. Donec commodo diam non quam porta, et blandit nisi viverra. Suspendisse potenti. Maecenas nec ex nec lorem efficitur condimentum.</p>
                 <p>Curabitur vitae magna eget lorem fermentum auctor. Praesent sit amet ex eget odio accumsan auctor. Suspendisse potenti. Vivamus nec augue nisi. Fusce vel tellus vehicula, vehicula lacus vitae, auctor erat. Etiam auctor metus id ex cursus, id maximus est lacinia. Integer mollis neque non turpis varius, non malesuada metus porttitor. Etiam sit amet felis a augue vestibulum blandit. Sed malesuada, orci nec elementum gravida, justo turpis tincidunt velit, nec egestas lorem odio at lacus.</p>

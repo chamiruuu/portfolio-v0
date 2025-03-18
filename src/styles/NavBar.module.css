@@ -1,81 +1,160 @@
-@import url("../styles/Fonts.css");
-
+/* Navbar.module.css */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
-    height: 60px; /* Fixed height */
+  position: sticky;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
 }
 
-.navbar.collapsed {
-    width: 50%; /* Smaller width for collapsed navbar */
-    padding: 10px 10px; /* Reduced padding */
+.navbarContainer {
+  position: relative; /* Allows absolute positioning of navLinks */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 0 20px;
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.collapsed .navbarContainer {
+  width: 50%; /* Shrinks the container width */
+  padding: 0 10px; /* Reduces padding for a compact look */
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+  flex: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+.logo a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  position: absolute; /* Decouples navLinks from container width */
+  left: 50%; /* Centers the navLinks horizontally */
+  transform: translateX(-50%); /* Ensures perfect centering */
+  transition: all 0.3s ease;
+}
+
+.navLinks ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  margin: 0 15px;
 }
 
 .navLinks a {
-    color: #fff;
-    font-family: "K2D", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
 }
 
 .navLinks a:hover {
-    background-color: #575757;
+  color: #007bff;
 }
 
-.iconButtons {
-    display: flex;
-    gap: 10px;
-    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.3s ease;
 }
 
-.iconBtn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 4px;
-    transition: background-color 0.1s;
+.navLinks a:hover::after {
+  width: 100%;
 }
 
-.iconBtn:hover {
-    background-color: #575757;
+.actionIcons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+.icon {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: #007bff;
 }
 
 .hidden {
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbarContainer {
+    width: 90%;
+  }
+
+  .navbar.collapsed .navbarContainer {
+    width: 70%;
+  }
+
+  .navLinks li {
+    margin: 0 10px;
+  }
+
+  .navLinks a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbarContainer {
+    width: 95%;
+  }
+
+  .navbar.collapsed .navbarContainer {
+    width: 80%;
+  }
+
+  .navLinks li {
+    margin: 0 8px;
+  }
+
+  .navLinks a {
+    font-size: 0.8rem;
+  }
+
+  .logo a {
+    font-size: 1.2rem;
+  }
 }
