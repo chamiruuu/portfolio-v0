@@ -1,0 +1,7 @@
+.lottieContainer {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  width: 80px;  /* Adjust size as needed */
+  height: auto; /* Adjust size as needed */
+}
