@@ -1,0 +1,64 @@
+.marqueeWrapper {
+  width: 100%;
+  padding: 2rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.techList {
+  display: flex;
+  gap: 2rem;
+  padding: 0 2rem; /* Adding padding equal to the gap */
+}
+
+.techItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.techIcon {
+  font-size: 2rem;
+}
+
+.techName {
+  font-size: 0.875rem;
+  color: #E5E5E5;
+  font-family: 'K2D', sans-serif;
+  font-weight: 700;
+}
+
+/* Gradient overlays */
+.marqueeWrapper::before,
+.marqueeWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 8%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2; /* Increased z-index to ensure visibility */
+}
+
+.marqueeWrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgb(0, 0, 0) 0%,
+    rgb(0, 0, 0) 10%,
+    rgba(0, 0, 0, 0.8) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.marqueeWrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, 
+    rgb(0, 0, 0) 0%,
+    rgb(0, 0, 0) 10%,
+    rgba(0, 0, 0, 0.8) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}

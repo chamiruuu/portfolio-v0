@@ -1,38 +1,53 @@
-import PropTypes from 'prop-types';
+import styles from "../styles/ProjectCard.module.css";
+import projectImage from "../assets/Rectangle 6.png";
 import GitHubIcon from '@mui/icons-material/GitHub';
-import styles from '../styles/ProjectCard.module.css';
+import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
+import PropTypes from 'prop-types';
 
-const ProjectCard = ({ image, title, description, technologies, githubLink }) => {
+const ProjectsCard = ({ 
+  title = "Sortlify", 
+  description = "A simple python script that is with GUI the function of the script is to make sorting files easy. A simple python script that is with GUI, the function of the script is to make sorting files easy. A simple python script that is with GUI the function of the script is to make sorting files easy.",
+  technologies = ["Python", "CustomTinker"],
+  repoUrl = "#" 
+}) => {
   return (
-    <div className={styles.card}>
-      <div className={styles.imageContainer}>
-        <img src={image} alt={title} className={styles.projectImage} />
+    <div className={styles.container}>
+      <div className={styles.imagePlaceholder}>
+        <img src={projectImage} alt="Project" />
       </div>
-      <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.description}>{description}</p>
-        <div className={styles.technologies}>
-          {technologies.map((tech, index) => (
-            <span key={index} className={styles.tech}>{tech}</span>
-          ))}
-        </div>
-        <div className={styles.actions}>
-          <button className={styles.readMore}>Read More</button>
-          <a href={githubLink} target="_blank" rel="noopener noreferrer" className={styles.githubLink}>
+      <div className={styles.texts}>
+        <div className={styles.titleWrapper}>
+          <h1>{title}</h1>
+          <a 
+            href={repoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.githubLink}
+          >
             <GitHubIcon />
           </a>
+        </div>
+        <p>{description}</p>
+        <div className={styles.tagsWrapper}>
+          {technologies.map((tech, index) => (
+            <span key={index} className={styles.tag}>{tech}</span>
+          ))}
+          <button className={styles.readMore}>
+            <b>Read More</b>
+            <ReadMoreRoundedIcon className={styles.arrowIcon} />
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-ProjectCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  githubLink: PropTypes.string.isRequired
+ProjectsCard.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  technologies: PropTypes.arrayOf(PropTypes.string),
+  repoUrl: PropTypes.string
 };
 
-export default ProjectCard;
+export default ProjectsCard;
+

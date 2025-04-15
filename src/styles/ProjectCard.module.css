@@ -1,99 +1,114 @@
-.card {
-  width: 100%;
-  background-color: #161616;
-  border-radius: 1rem;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  height: 26rem;
+/* ProjectsCard.module.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 580px;
+  height: 608px;
+  background: #1a1a1a00;
+  border: solid 4px #ffffff;
+  border-radius: 24px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
-.card:hover {
-  transform: translateY(-0.25rem);
-}
-
-.imageContainer {
+.imagePlaceholder {
   width: 100%;
-  height: 13rem;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.5rem;
   overflow: hidden;
 }
 
-.projectImage {
+.imagePlaceholder img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 1.5rem;
 }
 
-.content {
-  padding: 1.5rem;
+.texts {
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-
-.title {
-  font-family: 'K2D', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: white;
-  margin: 0 0 0.75rem 0;
-}
-
-.description {
-  font-family: 'K2D', sans-serif;
-  font-size: 1rem;
-  color: #808080;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-  flex-grow: 1;
-}
-
-.technologies {
-  display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
 }
 
-.tech {
-  font-family: 'K2D', sans-serif;
-  font-size: 0.875rem;
-  color: white;
-  background-color: #252525;
-  padding: 0.375rem 1rem;
-  border-radius: 0.25rem;
-}
-
-.actions {
+.titleWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: auto;
+  justify-content: space-between;
 }
 
-.readMore {
-  font-family: 'K2D', sans-serif;
-  font-size: 0.875rem;
-  color: white;
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.readMore:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.titleWrapper img {
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 .githubLink {
-  color: white;
+  color: inherit;
   transition: color 0.3s ease;
-  opacity: 0.7;
+  display: flex;
+  align-items: center;
 }
 
 .githubLink:hover {
-  opacity: 1;
+  color: #646cff;
+}
+
+.texts h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.texts p {
+  color: #cccccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.tagsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #262626;
+  color: #e5e5e5;
+  padding: 0.2rem 1rem;
+  border-radius: 24px;
+  font-size: 0.875rem;
+}
+
+.readMore {
+  margin-left: auto;
+  background: white;
+  color: black;
+  border: none;
+  padding: 0.2rem 1rem;
+  border-radius: 24px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.readMore:hover {
+  background: #e5e5e5;
+}
+
+.arrowIcon {
+  width: 2px;
+  height: auto;
 }

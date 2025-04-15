@@ -39,7 +39,7 @@
 
 .secondSection{
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
@@ -49,6 +49,7 @@
   padding: 0;
   gap: 1px;
   padding-top: 3.875rem; /* 62px converted to rem */
+  overflow-y: auto;
 }
 
 .aboutTitle {
@@ -72,17 +73,21 @@
   color: var(--text);
   font-family: 'K2D', sans-serif;
   font-weight: 600;
+  margin: 0;
+  padding: 0;
 }
 
 .projectsLabel {
-  color: #808080;
+  color: #ffffff;
   font-size: 1.125rem;
   font-family: 'K2D', sans-serif;
   font-weight: 600;
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-top: 8rem;
+  align-self: flex-start;
+  margin-top: 7rem;
+  margin-left: 4%;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .projectsTitle {
@@ -90,7 +95,10 @@
   font-family: 'K2D', sans-serif;
   font-weight: 600;
   color: white;
-  margin: 1rem 0;
+  margin: 0;
+  align-self: flex-start;
+  margin-left: 4%;
+  padding: 0;
 }
 
 .projectsSubtitle {
@@ -98,33 +106,21 @@
   font-family: 'K2D', sans-serif;
   font-weight: 400;
   color: #808080;
-  margin-bottom: 3rem;
+  margin-top: 0;
+  margin-bottom: 0rem;
   max-width: 60%;
-  text-align: center;
+  text-align: left;
+  align-self: flex-start;
+  margin-left: 4%;
+  padding: 0;
 }
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, 580px);
   gap: 2rem;
-  width: 90%;
-  max-width: 1200px;
-  margin-bottom: 3rem;
-}
-
-.viewAllButton {
-  font-family: 'K2D', sans-serif;
-  font-size: 1rem;
-  color: white;
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.75rem 2rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 2rem;
-}
-
-.viewAllButton:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  margin: 3rem auto;
+  width: 100%;
+  padding: 0 2rem;
 }
