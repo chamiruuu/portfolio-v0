@@ -4,9 +4,10 @@ import {
   FaNode, FaGitAlt, FaDocker 
 } from 'react-icons/fa';
 import { SiTypescript, SiMongodb, SiPostgresql } from 'react-icons/si';
+import PropTypes from 'prop-types';
 import styles from '../styles/TechMarquee.module.css';
 
-const TechMarquee = () => {
+const TechMarquee = ({ className }) => {
   const technologies = [
     { icon: FaPython, name: 'Python', color: '#3776AB' },
     { icon: FaReact, name: 'React', color: '#61DAFB' },
@@ -35,7 +36,7 @@ const TechMarquee = () => {
   ];
 
   return (
-    <div className={styles.marqueeWrapper}>
+    <div className={`${styles.marqueeWrapper} ${className || ''}`}>
       <Marquee
         gradient={false}
         speed={50}
@@ -55,6 +56,10 @@ const TechMarquee = () => {
       </Marquee>
     </div>
   );
+};
+
+TechMarquee.propTypes = {
+  className: PropTypes.string
 };
 
 export default TechMarquee;

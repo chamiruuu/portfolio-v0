@@ -3,6 +3,8 @@ import SocialLinks from '../components/SocialLinks';
 import LottieAnimation from '../components/LottieAnimation';
 import ProjectCard from '../components/ProjectCard';
 import TechMarquee from '../components/TechMarquee';
+import ArticleCard from '../components/ArticleCard';
+import Footer from '../components/Footer';
 import '../styles/Fonts.css';
 import styles from '../styles/Home.module.css';
 
@@ -53,8 +55,58 @@ const Home = () => {
             repoUrl="https://github.com/yourusername/project-three"
           />
         </div>
-        <TechMarquee />
+        <TechMarquee className={styles.TechMarquee} />
       </section>
+
+      <section className={styles.thirdSection}>
+        <h3 className={styles.articlesLabel}>ARTICLES</h3>
+        <h2 className={styles.articlesTitle}>Selected articles</h2>
+        <p className={styles.articlesSubtitle}>Here&apos;s a curated selection showcasing my expertise and the achieved results.</p>
+        
+        <div className={styles.articleGrid}>
+          <ArticleCard 
+            category="TUTORIAL"
+            tags="MATH | JAVASCRIPT"
+            title="How to map a number between two ranges"
+            readTime="5 minute read"
+            lastUpdated="October 18, 2023"
+            link="#"
+          />
+          <ArticleCard 
+            category="GUIDE"
+            tags="REACT | TYPESCRIPT"
+            title="Building Custom React Hooks"
+            readTime="8 minute read"
+            lastUpdated="March 15, 2024"
+            link="#"
+          />
+          <ArticleCard 
+            category="TUTORIAL"
+            tags="NODE.JS | EXPRESS"
+            title="Creating a REST API with Express"
+            readTime="10 minute read"
+            lastUpdated="April 1, 2024"
+            link="#"
+          />
+          <ArticleCard 
+            category="TUTORIAL"
+            tags="NODE.JS | EXPRESS"
+            title="Creating a REST API with Express"
+            readTime="10 minute read"
+            lastUpdated="April 1, 2024"
+            link="#"
+          />
+          <ArticleCard 
+            category="GUIDE"
+            tags="REACT | TYPESCRIPT"
+            title="Building Custom React Hooks"
+            readTime="8 minute read"
+            lastUpdated="March 15, 2024"
+            link="#"
+          />
+        </div>
+      </section>
+      <Footer />
     </div>
   );
 };
