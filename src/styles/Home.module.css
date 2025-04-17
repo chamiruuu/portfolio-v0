@@ -13,6 +13,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  padding-left: 5%;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
 }
 
 .title{
@@ -35,6 +42,14 @@
   align-items: center;
   margin: 0%;
   padding: 0%;
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    flex-direction: column;
+    padding-left: 0;
+    text-align: center;
+  }
 }
 
 .secondSection{
@@ -179,6 +194,10 @@
   align-self: flex-end;
   margin-right: 4%;
   padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-wrap: nowrap;
 }
 
 .articleGrid {
@@ -190,5 +209,5 @@
   max-width: 94%;
   padding: 2rem;
   margin: 3rem auto;
-  margin-bottom:  8.875rem;
+  margin-bottom: 8.875rem;
 }

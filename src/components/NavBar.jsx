@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '../styles/NavBar.module.css';
 import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -6,13 +7,15 @@ const NavBar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src="src/assets/logo.svg" alt="Logo" className={styles.logoImage} />
+        <Link to="/">
+          <img src="src/assets/logo.svg" alt="Logo" className={styles.logoImage} />
+        </Link>
       </div>
       <ul className={styles.navLinks}>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/projects">Projects</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
       </ul>
       <div className={styles.iconContainer}>
         <TranslateRoundedIcon className={styles.icon} />

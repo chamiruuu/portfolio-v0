@@ -13,7 +13,7 @@ const Home = () => {
     <div className={styles.homeContainer}>
       <NavBar />
       <section className={styles.heroSection}>
-        <div>
+        <div className={styles.heroContent}>
           <h1 className={styles.title}>chamiru fernando</h1>
           <span className={styles.subtext}>PORTFOLIO</span>
         </div>
@@ -33,7 +33,9 @@ const Home = () => {
 
         <h3 className={styles.projectsLabel}>PROJECTS</h3>
         <h2 className={styles.projectsTitle}>Selected Projects</h2>
-        <p className={styles.projectsSubtitle}>Here&apos;s a curated selection showcasing my expertise and the achieved results.</p>
+        <p className={styles.projectsSubtitle}>
+          Here&apos;s a curated selection showcasing my expertise and the achieved results.
+        </p>
         
         <div className={styles.projectsGrid}>
           <ProjectCard 
