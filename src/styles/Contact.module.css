@@ -1,0 +1,137 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "K2D", sans-serif;
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  padding: 4rem;
+  position: relative;
+}
+
+.heroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.titleContainer {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.titlePrefix {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  position: relative;
+  text-align: right;
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.titleMain {
+  font-size: clamp(3rem, 15vw, 10rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 72%;
+  text-transform: uppercase;
+  font-family: "Anta", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.titleYear {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 400;
+  opacity: 0.9;
+  align-self: flex-end;
+  position: relative;
+  padding-top: 0.75rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  max-width: 800px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin-top: 12rem;
+  text-align: center;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  position: absolute;
+  bottom: 25%;
+}
+
+.socialIcon {
+  color: white;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.socialIcon:hover {
+  transform: translateY(-5px);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 2rem;
+  }
+
+  .titleRow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .titlePrefix, .titleYear {
+    text-align: center;
+    align-self: center;
+  }
+
+  .subtitle {
+    margin-top: 6rem;
+    padding: 0 1rem;
+  }
+
+  .socialLinks {
+    bottom: 15%;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+}
