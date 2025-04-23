@@ -14,8 +14,107 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  padding-top: 9rem; /* 5rem (navbar) + 4rem (64px gap) */
+  padding-top: 9rem;
   padding-right: 0;
+}
+
+.heroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.titleContainer {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.titlePrefix {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  position: relative;
+  text-align: right;
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.titleMain {
+  font-size: clamp(3rem, 15vw, 10rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 72%;
+  text-transform: uppercase;
+  font-family: "Anta", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.titleYear {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 400;
+  opacity: 0.9;
+  align-self: flex-end;
+  position: relative;
+  padding-top: 0.75rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  max-width: 800px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin-top: 12rem;
+  text-align: center;
+}
+
+.verticalLinksWrapper {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.verticalLink {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: white;
+  text-decoration: none;
+  font-family: "Michroma", sans-serif;
+  font-size: 0.5rem;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.verticalLink:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .imageLinksWrapper {
@@ -44,17 +143,6 @@
   padding-top: 2.625rem; /* 42px from top */
   gap: 5.375rem; /* 86px between links */
   padding-bottom: 1.0625rem; /* 17px from bottom */
-}
-
-.verticalLink {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  color: white;
-  text-decoration: none;
-  font-family: "Michroma", sans-serif;
-  font-size: 0.5rem; /* 8px */
-  font-weight: 400;
-  white-space: nowrap;
 }
 
 .gallery, .playground, .threedimensional {
