@@ -44,6 +44,22 @@
   font-family: "K2D", sans-serif;
   font-weight: 700;
   font-style: normal;
+  position: relative;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--text);
+  transition: width 0.3s ease;
+}
+
+.navLinks a:hover::after {
+  width: 100%;
 }
 
 .iconContainer {

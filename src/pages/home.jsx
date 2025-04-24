@@ -63,7 +63,9 @@ const Home = () => {
       <section className={styles.thirdSection}>
         <h3 className={styles.articlesLabel}>ARTICLES</h3>
         <h2 className={styles.articlesTitle}>Selected articles</h2>
-        <p className={styles.articlesSubtitle}>Here&apos;s a curated selection showcasing my expertise and the achieved results.</p>
+        <p className={styles.articlesSubtitle}>
+          Here&apos;s a curated selection showcasing my expertise and the achieved results.
+        </p>
         
         <div className={styles.articleGrid}>
           <ArticleCard 

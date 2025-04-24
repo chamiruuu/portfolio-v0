@@ -16,6 +16,11 @@
 
 html {
   overscroll-behavior: none;
+  cursor: none !important;
+}
+
+html * {
+  cursor: none !important;
 }
 
 html, body {
@@ -28,6 +33,7 @@ html, body {
 
 body {
   min-width: 320px;
+  cursor: none;
 }
 
 a {
