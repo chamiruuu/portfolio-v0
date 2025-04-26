@@ -9,30 +9,6 @@
   background-color: rgb(255, 255, 255);
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s;
-}
-
-.cursorRing {
-  width: 32px;
-  height: 32px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: all 0.15s ease-out;
-}
-
-.cursor.hovering {
-  width: 12px;
-  height: 12px;
-}
-
-.cursorRing.hovering {
-  width: 40px;
-  height: 40px;
-  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .trail {
@@ -44,27 +20,7 @@
   border-radius: 50%;
   pointer-events: none;
   border: 2px solid rgb(255, 255, 255);
-  background-color: none;
-  z-index: 99999;
-}
-
-.trailDot {
-  width: 4px;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transition: all 0.08s linear;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
+  background-color: transparent;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
 }
