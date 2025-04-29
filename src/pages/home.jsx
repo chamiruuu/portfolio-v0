@@ -12,15 +12,16 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <NavBar />
+      {/* Remove snap container and allow natural scrolling */}
       <section className={styles.heroSection}>
         <div className={styles.heroContent}>
-          <h1 className={styles.title}>chamiru fernando</h1>
+          <h1 className={styles.title}>Chamiru Fernando</h1>
           <span className={styles.subtext}>PORTFOLIO</span>
         </div>
         <SocialLinks />
         <LottieAnimation />
       </section>
-      
+
       <section className={styles.secondSection}>
         <h2 className={styles.aboutTitle}>
           <span className={styles.aboutTitleSymbol}>~</span>
@@ -36,27 +37,28 @@ const Home = () => {
         <p className={styles.projectsSubtitle}>
           Here&apos;s a curated selection showcasing my expertise and the achieved results.
         </p>
-        
+
         <div className={styles.projectsGrid}>
           <ProjectCard 
             title="Sortlify"
-            description="A simple python script that is with GUI the function of the script is to make sorting files easy. A simple python script that is with GUI, the function of the script is to make sorting files easy. A simple python script that is with GUI the function of the script is to make sorting files easy."
+            description="A simple python script with GUI to make file sorting easy."
             technologies={["Python", "CustomTinker"]}
             repoUrl="https://github.com/yourusername/sortlify"
           />
           <ProjectCard 
             title="Project Two"
-            description="A simple python script that is with GUI the function of the script is to make sorting files easy. A simple python script that is with GUI, the function of the script is to make sorting files easy. A simple python script that is with GUI the function of the script is to make sorting files easy."
+            description="A web-based project showcasing React and MongoDB integration."
             technologies={["React", "Node.js", "MongoDB"]}
             repoUrl="https://github.com/yourusername/project-two"
           />
           <ProjectCard 
             title="Project Three"
-            description="A simple python script that is with GUI the function of the script is to make sorting files easy. A simple python script that is with GUI, the function of the script is to make sorting files easy. A simple python script that is with GUI the function of the script is to make sorting files easy."
+            description="A robust backend system built with TypeScript and PostgreSQL."
             technologies={["TypeScript", "Express", "PostgreSQL"]}
             repoUrl="https://github.com/yourusername/project-three"
           />
         </div>
+
         <TechMarquee className={styles.TechMarquee} />
       </section>
 
@@ -66,7 +68,7 @@ const Home = () => {
         <p className={styles.articlesSubtitle}>
           Here&apos;s a curated selection showcasing my expertise and the achieved results.
         </p>
-        
+
         <div className={styles.articleGrid}>
           <ArticleCard 
             category="TUTORIAL"
@@ -93,14 +95,6 @@ const Home = () => {
             link="#"
           />
           <ArticleCard 
-            category="TUTORIAL"
-            tags="NODE.JS | EXPRESS"
-            title="Creating a REST API with Express"
-            readTime="10 minute read"
-            lastUpdated="April 1, 2024"
-            link="#"
-          />
-          <ArticleCard 
             category="GUIDE"
             tags="REACT | TYPESCRIPT"
             title="Building Custom React Hooks"
@@ -108,8 +102,17 @@ const Home = () => {
             lastUpdated="March 15, 2024"
             link="#"
           />
+          <ArticleCard 
+            category="TUTORIAL"
+            tags="NODE.JS | EXPRESS"
+            title="Creating a REST API with Express"
+            readTime="10 minute read"
+            lastUpdated="April 1, 2024"
+            link="#"
+          />
         </div>
       </section>
+
       <Footer />
     </div>
   );

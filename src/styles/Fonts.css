@@ -2,3 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+@font-face {
+  font-family: 'ThePrestigeSignature';
+  src: url('../fonts/Theprestigesignature-ywwaM.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
