@@ -6,7 +6,7 @@
   font-family: 'K2D', sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  /* Modified scroll behavior to handle scroll animations in JS */
   scroll-behavior: smooth;
 }
 
@@ -19,7 +19,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  scroll-snap-align: start;
 }
 
 .heroSection::before {
@@ -99,7 +98,6 @@
   gap: 1px;
   padding-top: 8.875rem;
   overflow-y: auto;
-  scroll-snap-align: start;
 }
 
 .aboutTitle {
@@ -262,3 +260,53 @@
   object-fit: contain;
 }
 
+/* Added indicators for scroll direction */
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounceDown 2s infinite;
+  z-index: 10;
+  color: white;
+  font-size: 2rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.scrollUpIndicator {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounceUp 2s infinite;
+  z-index: 10;
+  color: white;
+  font-size: 2rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(5px) translateX(-50%);
+  }
+}
+
+@keyframes bounceUp {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}

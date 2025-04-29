@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import NavBar from '../components/NavBar';
 import SocialLinks from '../components/SocialLinks';
 import LottieAnimation from '../components/LottieAnimation';
@@ -9,20 +10,93 @@ import '../styles/Fonts.css';
 import styles from '../styles/Home.module.css';
 
 const Home = () => {
+  const heroSectionRef = useRef(null);
+  const secondSectionRef = useRef(null);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      // Only handle scroll events when not already scrolling
+      if (!isScrolling) {
+        const heroRect = heroSectionRef.current.getBoundingClientRect();
+        const secondRect = secondSectionRef.current.getBoundingClientRect();
+        
+        // Check if we're in the hero section and scrolling down
+        if (heroRect.top <= 0 && heroRect.bottom > 0 && event.deltaY > 0) {
+          event.preventDefault();
+          setIsScrolling(true);
+          
+          // Smooth scroll to the second section
+          secondSectionRef.current.scrollIntoView({ 
+            behavior: 'smooth',
+          });
+          
+          // Reset isScrolling after animation completes
+          setTimeout(() => {
+            setIsScrolling(false);
+          }, 1000); // Adjust timing to match your scroll animation duration
+        }
+        
+        // Check if we're in the second section and scrolling up
+        else if (secondRect.top <= 100 && secondRect.top >= -100 && event.deltaY < 0) {
+          event.preventDefault();
+          setIsScrolling(true);
+          
+          // Smooth scroll to the hero section
+          heroSectionRef.current.scrollIntoView({ 
+            behavior: 'smooth',
+          });
+          
+          // Reset isScrolling after animation completes
+          setTimeout(() => {
+            setIsScrolling(false);
+          }, 1000);
+        }
+      }
+    };
+
+    // Attach the event listener
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    
+    // Clean up on unmount
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, [isScrolling]);
+
+  // Function to handle click on scroll indicators
+  const handleScrollToSection = (ref) => {
+    setIsScrolling(true);
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      setIsScrolling(false);
+    }, 1000);
+  };
+
   return (
     <div className={styles.homeContainer}>
       <NavBar />
-      {/* Remove snap container and allow natural scrolling */}
-      <section className={styles.heroSection}>
+      
+      <section ref={heroSectionRef} className={styles.heroSection}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>Chamiru Fernando</h1>
           <span className={styles.subtext}>PORTFOLIO</span>
         </div>
         <SocialLinks />
         <LottieAnimation />
+        <div 
+          className={styles.scrollIndicator}
+          onClick={() => handleScrollToSection(secondSectionRef)}
+        >
+        </div>
       </section>
 
-      <section className={styles.secondSection}>
+      <section ref={secondSectionRef} className={styles.secondSection}>
+        <div 
+          className={styles.scrollUpIndicator}
+          onClick={() => handleScrollToSection(heroSectionRef)}
+        >
+        </div>
         <h2 className={styles.aboutTitle}>
           <span className={styles.aboutTitleSymbol}>~</span>
           ABOUT ME
