@@ -1,3 +1,121 @@
+@keyframes filamentStartup {
+  /* Initial dark state */
+  0% {
+    opacity: 0;
+    filter: blur(90px);
+  }
+  /* First faint glow */
+  5% {
+    opacity: 0.2;
+    filter: blur(95px);
+  }
+  /* First flicker - bulb trying to warm up */
+  8% {
+    opacity: 0.4;
+    filter: blur(98px);
+  }
+  8.5% {
+    opacity: 0.15;
+    filter: blur(92px);
+  }
+  /* Stronger attempt */
+  12% {
+    opacity: 0.5;
+    filter: blur(100px);
+  }
+  12.8% {
+    opacity: 0.3;
+    filter: blur(95px);
+  }
+  /* More significant warming */
+  17% {
+    opacity: 0.65;
+    filter: blur(105px);
+  }
+  18.5% {
+    opacity: 0.45;
+    filter: blur(98px);
+  }
+  /* Bulb catches on with brief surge */
+  22% {
+    opacity: 0.85;
+    filter: blur(110px);
+  }
+  24% {
+    opacity: 0.6;
+    filter: blur(102px);
+  }
+  /* Warm-up struggle */
+  28% {
+    opacity: 0.7;
+    filter: blur(104px);
+  }
+  30% {
+    opacity: 0.55;
+    filter: blur(100px);
+  }
+  /* Final surge to full brightness */
+  35% {
+    opacity: 0.9;
+    filter: blur(108px);
+  }
+  37% {
+    opacity: 0.75;
+    filter: blur(103px);
+  }
+  /* Stabilizing but still with character */
+  45% {
+    opacity: 0.8;
+    filter: blur(105px);
+  }
+  /* Fully on but with natural filament variations */
+  100% {
+    opacity: 0.8;
+    filter: blur(102px);
+  }
+}
+
+@keyframes filamentIdle {
+  0% {
+    opacity: 0.8;
+    filter: blur(102px);
+  }
+  /* Subtle natural dimming */
+  18% {
+    opacity: 0.78;
+    filter: blur(101px);
+  }
+  /* Barely perceptible fluctuation */
+  32% {
+    opacity: 0.81;
+    filter: blur(103px);
+  }
+  /* Slight power fluctuation */
+  46% {
+    opacity: 0.77;
+    filter: blur(100px);
+  }
+  /* Return to normal */
+  64% {
+    opacity: 0.8;
+    filter: blur(102px);
+  }
+  /* Another minor surge */
+  78% {
+    opacity: 0.83;
+    filter: blur(104px);
+  }
+  /* Settling back to stable */
+  92% {
+    opacity: 0.79;
+    filter: blur(101px);
+  }
+  100% {
+    opacity: 0.8;
+    filter: blur(102px);
+  }
+}
+
 .homeContainer {
   width: 100vw;
   min-height: 100vh;
@@ -6,7 +124,6 @@
   font-family: 'K2D', sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;
-  /* Modified scroll behavior to handle scroll animations in JS */
   scroll-behavior: smooth;
 }
 
@@ -31,16 +148,19 @@
   height: 120rem;
   background: radial-gradient(
     ellipse at center,
-    rgba(0, 255, 200, 0.4) 0%,
-    rgba(0, 255, 200, 0.25) 25%,
-    rgba(0, 255, 200, 0.15) 45%,
-    rgba(0, 255, 200, 0.05) 65%,
+    rgba(0, 255, 200, 0.5) 0%,    /* Cyan-green core */
+    rgba(0, 255, 200, 0.35) 15%,  /* Bright cyan-green */
+    rgba(0, 255, 200, 0.25) 30%,  /* Fading cyan */
+    rgba(0, 255, 200, 0.15) 50%,  /* Softer cyan */
+    rgba(0, 255, 200, 0.08) 65%,  /* Very soft cyan */
     transparent 85%
   );
   pointer-events: none;
   z-index: 0;
-  filter: blur(100px);
-  opacity: 1;
+  filter: blur(102px);
+  opacity: 0.8;
+  animation: filamentStartup 3.5s ease-out forwards, filamentIdle 8s ease-in-out infinite 3.5s;
+  /* Animation duration increased for more realistic warm-up */
 }
 
 .heroContent {
@@ -258,55 +378,4 @@
   width: auto;
   height: 14.4rem;
   object-fit: contain;
-}
-
-/* Added indicators for scroll direction */
-.scrollIndicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: bounceDown 2s infinite;
-  z-index: 10;
-  color: white;
-  font-size: 2rem;
-  opacity: 0.7;
-  cursor: pointer;
-}
-
-.scrollUpIndicator {
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: bounceUp 2s infinite;
-  z-index: 10;
-  color: white;
-  font-size: 2rem;
-  opacity: 0.7;
-  cursor: pointer;
-}
-
-@keyframes bounceDown {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0) translateX(-50%);
-  }
-  40% {
-    transform: translateY(10px) translateX(-50%);
-  }
-  60% {
-    transform: translateY(5px) translateX(-50%);
-  }
-}
-
-@keyframes bounceUp {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0) translateX(-50%);
-  }
-  40% {
-    transform: translateY(-10px) translateX(-50%);
-  }
-  60% {
-    transform: translateY(-5px) translateX(-50%);
-  }
 }
