@@ -1,74 +1,24 @@
 @keyframes filamentStartup {
-  /* Initial dark state */
   0% {
     opacity: 0;
     filter: blur(90px);
   }
-  /* First faint glow */
-  5% {
+  20% {
     opacity: 0.2;
     filter: blur(95px);
   }
-  /* First flicker - bulb trying to warm up */
-  8% {
+  40% {
     opacity: 0.4;
     filter: blur(98px);
   }
-  8.5% {
-    opacity: 0.15;
-    filter: blur(92px);
-  }
-  /* Stronger attempt */
-  12% {
-    opacity: 0.5;
-    filter: blur(100px);
-  }
-  12.8% {
-    opacity: 0.3;
-    filter: blur(95px);
-  }
-  /* More significant warming */
-  17% {
-    opacity: 0.65;
-    filter: blur(105px);
-  }
-  18.5% {
-    opacity: 0.45;
-    filter: blur(98px);
-  }
-  /* Bulb catches on with brief surge */
-  22% {
-    opacity: 0.85;
-    filter: blur(110px);
-  }
-  24% {
+  60% {
     opacity: 0.6;
-    filter: blur(102px);
-  }
-  /* Warm-up struggle */
-  28% {
-    opacity: 0.7;
-    filter: blur(104px);
-  }
-  30% {
-    opacity: 0.55;
     filter: blur(100px);
   }
-  /* Final surge to full brightness */
-  35% {
-    opacity: 0.9;
-    filter: blur(108px);
+  80% {
+    opacity: 0.7;
+    filter: blur(101px);
   }
-  37% {
-    opacity: 0.75;
-    filter: blur(103px);
-  }
-  /* Stabilizing but still with character */
-  45% {
-    opacity: 0.8;
-    filter: blur(105px);
-  }
-  /* Fully on but with natural filament variations */
   100% {
     opacity: 0.8;
     filter: blur(102px);
