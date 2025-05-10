@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -14,12 +14,23 @@ const Projects = () => {
   const [index, setIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
+  // Memoize the LetterGlitch component to prevent unnecessary re-renders
+  const letterGlitch = useMemo(() => (
+    <LetterGlitch
+      glitchSpeed={100} // Reduced glitch speed for better performance
+      centerVignette={false}
+      outerVignette={false}
+      smooth={true}
+      className={styles.letterGlitchBackground}
+    />
+  ), []);
+
   useEffect(() => {
     if (index < fullText.length) {
       const timeout = setTimeout(() => {
         setTypedText((prev) => prev + fullText[index]);
         setIndex(index + 1);
-      }, 50);
+      }, 75); // Slowed down typing animation for better performance
       return () => clearTimeout(timeout);
     } else {
       setIsTypingComplete(true);
@@ -30,13 +41,7 @@ const Projects = () => {
     <div className={styles.container}>
       <NavBar />
       <section className={styles.heroSection}>
-        <LetterGlitch
-          glitchSpeed={50}
-          centerVignette={false}
-          outerVignette={false}
-          smooth={true}
-          className={styles.letterGlitchBackground}
-        />
+        {letterGlitch}
         <motion.div
           className={styles.heroContent}
           initial={{ opacity: 0, y: 30 }}

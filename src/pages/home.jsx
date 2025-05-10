@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import Loader from "../components/Loader";
 import NavBar from "../components/NavBar";
 import SocialLinks from "../components/SocialLinks";
 import LottieAnimation from "../components/LottieAnimation";
@@ -15,6 +16,7 @@ import ScrollReveal from "../components/ScrollReveal";
 const Home = () => {
   const heroSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
+  const [loadingDone, setLoadingDone] = useState(false);
 
   // Animation Variants
   const projectContainerVariants = {
@@ -34,6 +36,8 @@ const Home = () => {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
+
+  if (!loadingDone) return <Loader onFinish={() => setLoadingDone(true)} />;
 
   return (
     <div className={styles.homeContainer}>
@@ -138,12 +142,26 @@ const Home = () => {
       </section>
 
       <section className={styles.thirdSection}>
-        <h3 className={styles.articlesLabel}>ARTICLES</h3>
-        <h2 className={styles.articlesTitle}>Selected articles</h2>
-        <p className={styles.articlesSubtitle}>
+        <motion.h3
+          className={styles.articlesLabel}
+          initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
+          ARTICLES
+        </motion.h3>
+        <SplitText text="Selected articles" className={styles.articlesTitle} />
+        <motion.p
+          className={styles.articlesSubtitle}
+          initial={{ opacity: 0, y: 0, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
           Here&apos;s a curated selection showcasing my expertise and the
           achieved results.
-        </p>
+        </motion.p>
 
         <motion.div
           className={styles.articleGrid}
