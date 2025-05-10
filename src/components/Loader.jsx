@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PropTypes from 'prop-types';
 import styles from "../styles/Loader.module.css";
 
 const Loader = ({ onFinish }) => {
@@ -65,6 +66,10 @@ const Loader = ({ onFinish }) => {
       )}
     </AnimatePresence>
   );
+};
+
+Loader.propTypes = {
+  onFinish: PropTypes.func.isRequired
 };
 
 export default Loader;

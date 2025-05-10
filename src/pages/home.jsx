@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import Loader from "../components/Loader";
 import NavBar from "../components/NavBar";
 import SocialLinks from "../components/SocialLinks";
