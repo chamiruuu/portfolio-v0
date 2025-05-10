@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import styles from "../styles/NavBar.module.css";
 import TranslateRoundedIcon from "@mui/icons-material/TranslateRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import logo from "../assets/logo.svg";
 
 const NavBar = () => {
   return (
@@ -15,7 +16,7 @@ const NavBar = () => {
       <div className={styles.logo}>
         <Link to="/">
           <img
-            src="src/assets/logo.svg"
+            src={logo}
             alt="Logo"
             className={styles.logoImage}
           />
