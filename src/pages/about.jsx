@@ -31,7 +31,8 @@ const About = () => {
           <span className={styles.aboutTitleSymbol}>~</span>
         </h2>
         <p className={styles.aboutContent}>
-          I&apos;m a student at the Informatics Institute of Technology, where I&apos;m diving deep into the world of technology. Alongside my studies, I work part-time as an Associate Web Developer, where I get to bring ideas to life through code and creativity. My journey into tech began early, sparked by a school workshop on robotics. That initial spark led me to experiment with Arduino projects, explore web design using
+          I&apos;m currently pursuing a Bachelor of Science degree in Computer Science at the Informatics Institute of Technology (IIT), where I&apos;m deeply engaged in exploring the ever-evolving world of software and digital innovation. Alongside my academic journey, I work part-time as an Associate Web Developer at Izatic, where I collaborate with a team to build functional and visually compelling web solutions that solve real-world problems. Outside the world of code, I&apos;m also a passionate photographer — capturing moments, moods, and stories through my lens. Whether I&apos;m refining a front-end interface or framing a perfect shot, I&apos;m driven by a love for creativity, precision, and meaningful expression in both digital and visual mediums. My work reflects a balance between technical curiosity and artistic intuition, and I&apos;m always eager to keep learning, building, and pushing the boundaries of what I can create.
+
         </p>
 
         <h2 className={styles.techTitle}>
@@ -40,7 +41,7 @@ const About = () => {
           <span className={styles.aboutTitleSymbol}>~</span>
         </h2>
         <p className={styles.techStack}>
-          JavaScript / React / Python / C / JAVA
+          Python / Javascript / React / Wordpress / Framer
         </p>
 
         <h2 className={styles.techTitle}>
@@ -68,7 +69,7 @@ const About = () => {
             location="Moratuwa, Sri Lanka"
             employmentType="Part Time"
             website="www.stsebastianscollegemortuwa.com"
-            description="Work on web development projects and design graphic content for the college. Collaborate with teams to create engaging, responsive websites and visually appealing graphics for various college events and promotions."
+            description="I manage and continuously update the college’s website, ensuring it remains fresh, functional, and user-friendly. Alongside web development, I also create graphic designs for various college events and promotions, blending creativity with technical skills to deliver engaging visuals that capture attention and support the college’s communication goals."
           />
           <WorkExperienceCard 
             company="DayGlare Studios"
@@ -78,7 +79,7 @@ const About = () => {
             location="Colombo, Sri Lanka"
             employmentType="Part Time"
             website="www.dayglarestudios.com"
-            description="Worked on various web development projects using modern technologies. Collaborated with senior developers to implement new features and maintain existing codebases. Participated in code reviews and team meetings to ensure high-quality deliverables."
+            description="At DayGlare Studios, I focus on photography and graphic design, capturing high-quality images for events and creating compelling visuals. I manage photo shoots, edit images, and design content using Adobe Photoshop and Illustrator. I collaborate with clients to bring their creative visions to life through both photography and design."
           />
           <WorkExperienceCard 
             company="VidWave Studios"
@@ -88,7 +89,7 @@ const About = () => {
             location="Colombo, Sri Lanka"
             employmentType="Part Time"
             website="www.vidwavestudios.com"
-            description="At VidWave Studios, I specialize in videography and video editing for a variety of events, creating compelling content for weddings, corporate functions, and other occasions. I use industry-standard tools like Davinci Resolve, Adobe Premiere Pro, and After Effects to edit footage and produce polished, high-quality videos that align with client expectations. My role encompasses capturing video, editing raw footage, and delivering the final video products."
+            description="At VidWave Studios, I specialize in videography and editing for events such as weddings and corporate functions. Using tools like Davinci Resolve, Premiere Pro, and After Effects, I capture footage, edit raw video, and deliver polished, high-quality final products that meet client expectations and tell their stories effectively."
           />
         </div>
       </section>

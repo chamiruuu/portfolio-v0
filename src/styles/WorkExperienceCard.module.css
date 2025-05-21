@@ -31,8 +31,7 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
   font-family: 'K2D', sans-serif;
-  white-space: normal;
-  word-wrap: break-word;
+  white-space: nowrap;
 }
 
 .sec2 {
