@@ -78,12 +78,12 @@ const Home = () => {
             baseRotation={5}
             blurStrength={20}
           >
-            I&apos;m a passionate Full Stack Developer with expertise in
-            crafting seamless web experiences. My journey in software
-            development has equipped me with a strong foundation in both
-            front-end and back-end technologies. I thrive on turning complex
-            problems into elegant solutions and am constantly exploring new
-            technologies to enhance my skill set.
+            I&apos;m a passionate developer who loves exploring how ideas turn
+            into real, working things through code. I’m currently pursuing a BSc
+            (Hons) in Computer Science, which continues to deepen my
+            understanding of the field and fuel my curiosity. I enjoy learning
+            new technologies, experimenting with different tools, and growing
+            through every project I take on.
           </ScrollReveal>
         </p>
 
@@ -117,22 +117,22 @@ const Home = () => {
         >
           <ProjectCard
             title="Sortlify"
-            description="A simple python script that is with GUI the function of the script is to make sorting files easy."
+            description="A sleek, Python-powered desktop app built with CustomTkinter that helps you quickly sort, copy, or move files based on filenames and extensions. Features include clipboard pasting, extension filtering, real-time progress tracking, undo functionality, and a modern dark-themed UI designed for a smooth, efficient workflow."
             technologies={["Python", "CustomTinker"]}
             repoUrl="https://github.com/yourusername/sortlify"
             animationVariants={projectCardVariants}
           />
           <ProjectCard
-            title="Project Two"
-            description="A web application built with the MERN stack to demonstrate real-time data manipulation and responsive design."
-            technologies={["React", "Node.js", "MongoDB"]}
+            title="NumScan OCR"
+            description="A Python script that extracts specific number patterns from images using Tesseract OCR. It processes batches of images, detects duplicates, and organizes problematic and duplicate images into separate folders. Includes advanced image processing for improved accuracy and provides detailed summary statistics for easy tracking."
+            technologies={["Python", "Pytesseract", "PIL"]}
             repoUrl="https://github.com/yourusername/project-two"
             animationVariants={projectCardVariants}
           />
           <ProjectCard
-            title="Project Three"
-            description="A TypeScript-based REST API with PostgreSQL to manage dynamic content delivery for web clients."
-            technologies={["TypeScript", "Express", "PostgreSQL"]}
+            title="CanvasFlow"
+            description="A Photoshop script that automates image replacement by importing images from a folder and swapping them into a placeholder layer. It resizes, centers, and converts images to Smart Objects, tracking progress to let you pick up seamlessly. Perfect for streamlining creative workflows and batch updates."
+            technologies={["ExtendScript", "JavaScript"]}
             repoUrl="https://github.com/yourusername/project-three"
             animationVariants={projectCardVariants}
           />

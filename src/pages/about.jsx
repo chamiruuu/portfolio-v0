@@ -19,8 +19,7 @@ const About = () => {
         </div>
         <div className={styles.heroText}>
           <div style={{ width: '100%' }}>
-            <div>I&apos;M CHAMIRURF - A 20 YEARS OLD</div>
-            <div>DEVELOPER</div>
+            <div>I&apos;M CHAMIRURF, A CREATIVE CODER BUILDING BOLD DIGITAL EXPERIENCES.</div>
           </div>
         </div>
       </section>
@@ -52,16 +51,6 @@ const About = () => {
         
         <div className={styles.workExperienceContainer}>
           <WorkExperienceCard 
-            company="V3 Global Holdings"
-            companyDescription="Student Employment"
-            position="Digital Marketing Executive"
-            duration="March 2025 - Present · 1 mos"
-            location="Colombo, Sri Lanka"
-            employmentType="Part Time"
-            website="www.v3global.com"
-            description="As an Associate Web Developer at Izatic, I work remotely to develop websites, focusing on transforming provided UI designs into fully functional websites using WordPress. My role includes customizing themes and ensuring websites are optimized for performance and responsiveness. I collaborate with a team to deliver high-quality web solutions tailored to client needs."
-          />
-          <WorkExperienceCard 
             company="IZATIC"
             companyDescription="Web Developing Company"
             position="Associate Web Developer"
@@ -87,19 +76,19 @@ const About = () => {
             position="Photographer & Designer"
             duration="Dec 2020 - Present · 4 yrs 4 mos"
             location="Colombo, Sri Lanka"
-            employmentType="Hybrid"
+            employmentType="Part Time"
             website="www.dayglarestudios.com"
             description="Worked on various web development projects using modern technologies. Collaborated with senior developers to implement new features and maintain existing codebases. Participated in code reviews and team meetings to ensure high-quality deliverables."
           />
           <WorkExperienceCard 
-            company="Previous Company"
-            companyDescription="Technology Solutions Provider"
-            position="Junior Developer"
-            duration="June 2024 - March 2025 · 9 mos"
+            company="VidWave Studios"
+            companyDescription="A Videogrpahy Company"
+            position="Videographer & Editor"
+            duration="Oct 2020 - Present · 4 yrs 8 mos"
             location="Colombo, Sri Lanka"
-            employmentType="Full Time"
-            website="www.example.com"
-            description="Worked on various web development projects using modern technologies. Collaborated with senior developers to implement new features and maintain existing codebases. Participated in code reviews and team meetings to ensure high-quality deliverables."
+            employmentType="Part Time"
+            website="www.vidwavestudios.com"
+            description="At VidWave Studios, I specialize in videography and video editing for a variety of events, creating compelling content for weddings, corporate functions, and other occasions. I use industry-standard tools like Davinci Resolve, Adobe Premiere Pro, and After Effects to edit footage and produce polished, high-quality videos that align with client expectations. My role encompasses capturing video, editing raw footage, and delivering the final video products."
           />
         </div>
       </section>

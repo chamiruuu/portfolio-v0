@@ -1,38 +1,37 @@
 import Marquee from 'react-fast-marquee';
 import { 
   FaPython, FaReact, FaHtml5, FaCss3Alt, FaJs, FaWordpress,
-  FaNode, FaGitAlt, FaDocker 
+  FaGitAlt 
 } from 'react-icons/fa';
-import { SiTypescript, SiMongodb, SiPostgresql } from 'react-icons/si';
+import { SiBootstrap, SiFigma, SiFramer, SiMysql } from 'react-icons/si';
 import PropTypes from 'prop-types';
 import styles from '../styles/TechMarquee.module.css';
 
 const TechMarquee = ({ className }) => {
   const technologies = [
     { icon: FaPython, name: 'Python', color: '#3776AB' },
-    { icon: FaReact, name: 'React', color: '#61DAFB' },
+    { icon: FaJs, name: 'JavaScript', color: '#F7DF1E' },
     { icon: FaHtml5, name: 'HTML5', color: '#E34F26' },
     { icon: FaCss3Alt, name: 'CSS3', color: '#1572B6' },
-    { icon: FaJs, name: 'JavaScript', color: '#F7DF1E' },
-    { icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
+    { icon: SiBootstrap, name: 'Bootstrap', color: '#7952B3' },
+    { icon: FaReact, name: 'React', color: '#61DAFB' },
+    { icon: SiMysql, name: 'MySQL', color: '#4479A1' },
     { icon: FaWordpress, name: 'WordPress', color: '#21759B' },
-    { icon: FaNode, name: 'Node.js', color: '#339933' },
+    { icon: SiFigma, name: 'Figma', color: '#F24E1E' },
+    { icon: SiFramer, name: 'Framer', color: '#0055FF' },
     { icon: FaGitAlt, name: 'Git', color: '#F05032' },
-    { icon: SiMongodb, name: 'MongoDB', color: '#47A248' },
-    { icon: SiPostgresql, name: 'PostgreSQL', color: '#336791' },
-    { icon: FaDocker, name: 'Docker', color: '#2496ED' },
+    // Duplicate the list for continuous scrolling
     { icon: FaPython, name: 'Python', color: '#3776AB' },
-    { icon: FaReact, name: 'React', color: '#61DAFB' },
+    { icon: FaJs, name: 'JavaScript', color: '#F7DF1E' },
     { icon: FaHtml5, name: 'HTML5', color: '#E34F26' },
     { icon: FaCss3Alt, name: 'CSS3', color: '#1572B6' },
-    { icon: FaJs, name: 'JavaScript', color: '#F7DF1E' },
-    { icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
+    { icon: SiBootstrap, name: 'Bootstrap', color: '#7952B3' },
+    { icon: FaReact, name: 'React', color: '#61DAFB' },
+    { icon: SiMysql, name: 'MySQL', color: '#4479A1' },
     { icon: FaWordpress, name: 'WordPress', color: '#21759B' },
-    { icon: FaNode, name: 'Node.js', color: '#339933' },
-    { icon: FaGitAlt, name: 'Git', color: '#F05032' },
-    { icon: SiMongodb, name: 'MongoDB', color: '#47A248' },
-    { icon: SiPostgresql, name: 'PostgreSQL', color: '#336791' },
-    { icon: FaDocker, name: 'Docker', color: '#2496ED' }
+    { icon: SiFigma, name: 'Figma', color: '#F24E1E' },
+    { icon: SiFramer, name: 'Framer', color: '#0055FF' },
+    { icon: FaGitAlt, name: 'Git', color: '#F05032' }
   ];
 
   return (
