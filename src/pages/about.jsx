@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import WorkExperienceCard from '../components/WorkExperienceCard';
 import Timeline from '../components/Timeline';
 import styles from '../styles/About.module.css';
-import abtheroimg from '../assets/abtheroimg.png';
+import abtheroimg from '../assets/abtheroimg.avif';
 
 // Helper to import images
 const sscLogo = '../assets/ssc.png';
@@ -49,7 +49,7 @@ const About = () => {
             <a href="#" className={`${styles.verticalLink} ${styles.playground}`}>PLAYGROUND</a>
             <a href="#" className={`${styles.verticalLink} ${styles.threedimensional}`}>THREEDIMENSIONAL</a>
           </div>
-          <img src={abtheroimg} alt="Hero" className={styles.heroImage} />
+          <img src={abtheroimg} loading="lazy" alt="Hero" className={styles.heroImage} />
         </div>
         <div className={styles.heroText}>
           <div style={{ width: '100%' }}>
