@@ -1,4 +1,4 @@
-section {
+.timelineSection {
   width: 80%;
   height: auto;
   display: flex;
@@ -53,19 +53,19 @@ section {
   padding: 0;
 }
 
-h2 {
+.timelineHeading {
   margin: 0;
   padding: 0;
   font-size: 18px;
 }
 
-h3 {
+.timelineSubheading {
   margin: 0;
   padding: 0;
   font-size: 16px;
 }
 
-span {
+.timelineSpan {
   margin: 0;
   padding: 0;
   font-size: 16px;
