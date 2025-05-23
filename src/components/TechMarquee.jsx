@@ -17,7 +17,7 @@ const TechMarquee = ({ className }) => {
     { icon: FaReact, name: 'React', color: '#61DAFB' },
     { icon: SiMysql, name: 'MySQL', color: '#4479A1' },
     { icon: FaWordpress, name: 'WordPress', color: '#21759B' },
-    { icon: SiFigma, name: 'Figma', color: '#F24E1E' },
+    { icon: SiFigma, name: 'Figma', color: '#d1d1d1' },
     { icon: SiFramer, name: 'Framer', color: '#0055FF' },
     { icon: FaGitAlt, name: 'Git', color: '#F05032' },
     // Duplicate the list for continuous scrolling
@@ -29,7 +29,7 @@ const TechMarquee = ({ className }) => {
     { icon: FaReact, name: 'React', color: '#61DAFB' },
     { icon: SiMysql, name: 'MySQL', color: '#4479A1' },
     { icon: FaWordpress, name: 'WordPress', color: '#21759B' },
-    { icon: SiFigma, name: 'Figma', color: '#F24E1E' },
+    { icon: SiFigma, name: 'Figma', color: '#d1d1d1' },
     { icon: SiFramer, name: 'Framer', color: '#0055FF' },
     { icon: FaGitAlt, name: 'Git', color: '#F05032' }
   ];

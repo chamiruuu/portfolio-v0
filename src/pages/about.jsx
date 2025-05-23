@@ -1,8 +1,42 @@
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import WorkExperienceCard from '../components/WorkExperienceCard';
+import Timeline from '../components/Timeline';
 import styles from '../styles/About.module.css';
 import abtheroimg from '../assets/abtheroimg.png';
+
+// Helper to import images
+const sscLogo = '../assets/ssc.png';
+const iitLogo = '../assets/iit.png';
+
+const educationHistory = [
+  {
+    logo: sscLogo,
+    yearRange: '2010 - 2023',
+    institutionName: "St. Sebastian's College, Moratuwa",
+    degree: '(Grade 01 - G.C.E Advanced Level Examination)',
+    logoStyle: { width: '70px', height: 'auto', marginBottom: '10px' }
+  },
+  {
+    logo: iitLogo,
+    yearRange: '2024 - 2025',
+    institutionName: 'Informatics Institute of Technology',
+    degree: '(Foundation Certificate in Higher Education - IT | Computer Science)',
+    logoStyle: { 
+        width: '50px',
+        height: '60px',
+        backgroundColor: '#A30000', 
+        borderTopLeftRadius: '5px',
+        borderTopRightRadius: '5px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontSize: '10px',
+        marginBottom: '10px'
+     }
+  }
+];
 
 const About = () => {
   return (
@@ -91,6 +125,16 @@ const About = () => {
             website="www.vidwavestudios.com"
             description="At VidWave Studios, I specialize in videography and editing for events such as weddings and corporate functions. Using tools like Davinci Resolve, Premiere Pro, and After Effects, I capture footage, edit raw video, and deliver polished, high-quality final products that meet client expectations and tell their stories effectively."
           />
+        </div>
+
+        <h2 className={styles.techTitle}>
+          <span className={styles.aboutTitleSymbol}>~</span>
+          EDUCATION
+          <span className={styles.aboutTitleSymbol}>~</span>
+        </h2>
+        
+        <div className={styles.educationContainer}>
+         <Timeline events={educationHistory} />
         </div>
       </section>
       <Footer />

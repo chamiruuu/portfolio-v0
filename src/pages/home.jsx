@@ -8,6 +8,7 @@ import TechMarquee from "../components/TechMarquee";
 import ArticleCard from "../components/ArticleCard";
 import Footer from "../components/Footer";
 import SplitText from "../components/SplitText";
+import BackgroundAnimation from "../components/BackgroundAnimation";
 import "../styles/Fonts.css";
 import styles from "../styles/Home.module.css";
 import { motion } from "framer-motion";
@@ -50,6 +51,7 @@ const Home = () => {
       <NavBar />
 
       <section ref={heroSectionRef} className={styles.heroSection}>
+        <BackgroundAnimation />
         <div className={styles.heroContent}>
           <h1 className={styles.title}>Chamiru Fernando</h1>
           <motion.span

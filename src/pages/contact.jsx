@@ -1,29 +1,31 @@
 import NavBar from "../components/NavBar";
 import styles from "../styles/Contact.module.css";
-import Dither from "../components/Dither";
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import Footer from "../components/Footer";
+
 
 const Contact = () => {
   return (
     <div className={styles.container}>
       <NavBar />
       <section className={styles.heroSection}>
-        <div className={styles.ditherContainer}>
-          <Dither
-            waveColor={[0.5, 0.5, 0.5]}
-            disableAnimation={false}
-            enableMouseInteraction={false}
-            mouseRadius={0.3}
-            colorNum={4}
-            waveAmplitude={0.3}
-            waveFrequency={3}
-            waveSpeed={0.02}
-          />
-        </div>
         <div className={styles.heroContent}>
-          <h1>Let&apos;s Connect <ArrowOutwardIcon className={styles.arrowIcon} /></h1>
+          <h1>Coffee, Code & Collabs</h1>
+          <p>Have something in mind? Let&apos;s talk. Whether it&apos;s a small project or a big vision,</p>
+          <p>I&apos;m open to freelance opportunities and collaborations.</p>
+          <p>Even if you&apos;re just curious about what I do – don&apos;t hesitate to get in touch.</p>
+          <div className={styles.socialLinks}>
+            <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+            <span>·</span>
+            <a href="mailto:your@email.com">Mail</a>
+            <span>·</span>
+            <a href="https://instagram.com/yourprofile">Instagram</a>
+            <span>·</span>
+            <a href="https://github.com/yourprofile">Github</a>
+          </div>
         </div>
       </section>
+      <Footer className={styles.footer}/>
+
     </div>
   );
 }

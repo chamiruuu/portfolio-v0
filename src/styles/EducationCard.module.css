@@ -1,0 +1,88 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 16rem;
+  background-color: black;
+}
+
+.horizontalLine {
+  position: absolute;
+  width: 100%;
+  height: 0.5px;
+  background-color: white;
+  top: 5rem;
+}
+
+.timelineConnections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+}
+
+.timelineItemFirst {
+  position: absolute;
+  left: 6rem;
+  top: 7rem;
+}
+
+.timelineItemSecond {
+  position: absolute;
+  left: 604px;
+  top: 0;
+}
+
+.logoFirst {
+  position: absolute;
+  width: 43px;
+  height: 42px;
+  left: 43px;
+  top: 7.8125rem;
+}
+
+.logoFirst img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logoSecond {
+  position: absolute;
+  width: 29px;
+  height: 42px;
+  left: 550px;
+  top: 0.75rem;
+}
+
+.logoSecond img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.date {
+  color: white;
+  font-size: 16px;
+  font-family: 'K2D', sans-serif;
+  font-weight: 700;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+.institution {
+  color: white;
+  font-size: 18px;
+  font-family: 'K2D', sans-serif;
+  font-weight: 700;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+.subtext {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 16px;
+  font-family: 'K2D', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}

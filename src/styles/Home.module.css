@@ -1,4 +1,4 @@
-@keyframes filamentStartup {
+/* @keyframes filamentStartup {
   0% {
     opacity: 0;
     filter: blur(90px);
@@ -30,32 +30,27 @@
     opacity: 0.8;
     filter: blur(102px);
   }
-  /* Subtle natural dimming */
+
   18% {
     opacity: 0.78;
     filter: blur(101px);
   }
-  /* Barely perceptible fluctuation */
   32% {
     opacity: 0.81;
     filter: blur(103px);
   }
-  /* Slight power fluctuation */
   46% {
     opacity: 0.77;
     filter: blur(100px);
   }
-  /* Return to normal */
   64% {
     opacity: 0.8;
     filter: blur(102px);
   }
-  /* Another minor surge */
   78% {
     opacity: 0.83;
     filter: blur(104px);
   }
-  /* Settling back to stable */
   92% {
     opacity: 0.79;
     filter: blur(101px);
@@ -64,31 +59,26 @@
     opacity: 0.8;
     filter: blur(102px);
   }
-}
+} */
 
 .homeContainer {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: 'K2D', sans-serif;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+  background-color: #040407;
 }
 
 .heroSection {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background-color: #000000;
-  position: relative;
+  position: relative; /* This is important for the absolute positioning of BackgroundAnimation */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; /* Ensure the animation doesn't cause scrollbars */
 }
 
-.heroSection::before {
+/* .heroSection::before {
   content: '';
   position: absolute;
   top: -100%;
@@ -98,11 +88,11 @@
   height: 120rem;
   background: radial-gradient(
     ellipse at center,
-    rgba(0, 255, 200, 0.5) 0%,    /* Cyan-green core */
-    rgba(0, 255, 200, 0.35) 15%,  /* Bright cyan-green */
-    rgba(0, 255, 200, 0.25) 30%,  /* Fading cyan */
-    rgba(0, 255, 200, 0.15) 50%,  /* Softer cyan */
-    rgba(0, 255, 200, 0.08) 65%,  /* Very soft cyan */
+    rgba(0, 255, 200, 0.5) 0%,    
+    rgba(0, 255, 200, 0.35) 15%,  
+    rgba(0, 255, 200, 0.25) 30%,  
+    rgba(0, 255, 200, 0.15) 50%,  
+    rgba(0, 255, 200, 0.08) 65%,  
     transparent 85%
   );
   pointer-events: none;
@@ -110,17 +100,15 @@
   filter: blur(102px);
   opacity: 0.8;
   animation: filamentStartup 3.5s ease-out forwards, filamentIdle 8s ease-in-out infinite 3.5s;
-  /* Animation duration increased for more realistic warm-up */
-}
+} */
 
 .heroContent {
+  position: relative; /* Keep content above the background */
+  z-index: 1; /* Ensure content stays above the background animation */
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
-  width: 100%;
   align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 .title {
