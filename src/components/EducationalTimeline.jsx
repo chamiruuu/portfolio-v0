@@ -25,7 +25,7 @@ const EducationTimeline = () => {
           <div className={styles.connectorup}>
             <img className={styles.connectorline} src={lineUp} alt="Connector line up" />
           </div>
-          <div><img className={styles.logo} src={iitLogo} alt="IIT logo" /></div>
+          <div><img className={styles.logo} src={iitLogo} alt="IIT Logo" /></div>
           <div className={styles.text}>
             <h3>2024 - 2025</h3>
             <h2>Informatics Institute of Technology</h2>
