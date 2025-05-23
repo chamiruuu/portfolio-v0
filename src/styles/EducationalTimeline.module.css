@@ -1,0 +1,193 @@
+section {
+  width: 80%;
+  height: auto;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  flex-direction: column;
+  width: 90%;
+  height: 400px;
+  background-color: rgba(78, 74, 74, 0);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 1rem;
+}
+
+.mainbranch {
+  position: absolute;
+  width: 100%;
+  border: #ffffff solid 2px;
+  border-radius: 22px;
+}
+
+.content1 {
+  position: absolute;
+  bottom: 85px;
+  left: 6%;
+  height: 116px;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 18px;
+}
+
+.content1 .logo {
+  width: auto;
+  height: 43px;
+}
+
+.content1 .txt {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+span {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: #ffffffc3;
+}
+
+.content2 {
+  position: absolute;
+  top: 85px;
+  right: 6%;
+  padding-left: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  height: 116px;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+.content2 .logo {
+  width: auto;
+  height: 43px;
+}
+
+.content2 .txt {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.connectorline {
+  width: 48px;
+  height: auto;
+  padding-right: 4px;
+}
+
+.connectordown {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+  height: 100%;
+}
+
+.connectorup {
+  display: flex;
+  align-items: flex-end;
+  align-self: flex-end;
+  height: 100%;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  section {
+    width: 90%;
+  }
+
+  .container {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    width: 100%;
+  }
+
+  .container {
+    padding: 2rem 1rem;
+    height: auto;
+    min-height: 500px;
+  }
+
+  .mainbranch {
+    height: 2px;
+    width: 90%;
+  }
+
+  .content1,
+  .content2 {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    margin: 20px 0;
+  }
+
+  .connectorline {
+    width: 36px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content1,
+  .content2 {
+    width: 100%;
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .logo {
+    height: 35px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  .connectorline {
+    width: 24px;
+  }
+}
