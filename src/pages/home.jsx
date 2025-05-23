@@ -16,7 +16,10 @@ import ScrollReveal from "../components/ScrollReveal";
 const Home = () => {
   const heroSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
-  const [loadingDone, setLoadingDone] = useState(false);
+  const [loadingDone, setLoadingDone] = useState(() => {
+    const hasVisited = localStorage.getItem('hasVisitedBefore');
+    return !!hasVisited; // Convert to boolean
+  });
 
   // Animation Variants
   const projectContainerVariants = {
@@ -37,7 +40,10 @@ const Home = () => {
     },
   };
 
-  if (!loadingDone) return <Loader onFinish={() => setLoadingDone(true)} />;
+  if (!loadingDone) return <Loader onFinish={() => {
+    localStorage.setItem('hasVisitedBefore', 'true');
+    setLoadingDone(true);
+  }} />;
 
   return (
     <div className={styles.homeContainer}>
