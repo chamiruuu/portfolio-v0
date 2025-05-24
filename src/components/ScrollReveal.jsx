@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import '../styles/ScrollReveal.css'; 
+import styles from '../styles/ScrollReveal.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,7 +26,7 @@ const ScrollReveal = ({
     return text.split(/(\s+)/).map((word, index) => {
       if (word.match(/^\s+$/)) return word;
       return (
-        <span className="word" key={index}>
+        <span className={styles.word} key={index}>
           {word}
         </span>
       );
@@ -102,8 +102,8 @@ const ScrollReveal = ({
   }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
 
   return (
-    <h2 ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
-      <p className={`scroll-reveal-text ${textClassName}`}>{splitText}</p>
+    <h2 ref={containerRef} className={`${styles.scrollReveal} ${containerClassName}`}>
+      <p className={`${styles.scrollRevealText} ${textClassName}`}>{splitText}</p>
     </h2>
   );
 };

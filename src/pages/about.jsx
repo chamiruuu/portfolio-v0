@@ -4,8 +4,19 @@ import WorkExperienceCard from "../components/WorkExperienceCard";
 import styles from "../styles/About.module.css";
 import abtheroimg from "../assets/abtheroimg.avif";
 import Timeline from "../components/EducationalTimeline";
+import LetterSplit from "../components/LetterSplit";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import AnimatedParagraph from "../components/AnimatedParagraph";
+import AnimatedTechStack from "../components/AnimatedTechStack";
+
+const handleAnimationComplete = () => {
+  console.log("All letters have animated!");
+};
 
 const About = () => {
+  const [showSecondLine, setShowSecondLine] = useState(false);
+
   return (
     <div className={styles.aboutContainer}>
       <NavBar />
@@ -37,52 +48,74 @@ const About = () => {
         </div>
         <div className={styles.heroText}>
           <div style={{ width: "100%" }}>
-            <div>
-              I&apos;M CHAMIRURF, A CREATIVE CODER BUILDING BOLD DIGITAL
-              EXPERIENCES.
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "0rem" }}
+            >
+              <LetterSplit
+                text="I'M CHAMIRURF, A CREATIVE CODER"
+                delay={80}
+                animateBy="letters"
+                direction="down"
+                onAnimationComplete={() => setShowSecondLine(true)}
+              />
+              {showSecondLine && (
+                <LetterSplit
+                  text="BUILDING BOLD DIGITAL EXPERIENCES."
+                  delay={50}
+                  animateBy="letters"
+                  direction="down"
+                  onAnimationComplete={handleAnimationComplete}
+                />
+              )}
             </div>
           </div>
         </div>
       </section>
 
       <section className={styles.secondSection}>
-        <h2 className={styles.aboutTitle}>
+        <motion.h2
+          className={styles.aboutTitle}
+          initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
           <span className={styles.aboutTitleSymbol}>~</span>
           MYSELF
           <span className={styles.aboutTitleSymbol}>~</span>
-        </h2>
-        <p className={styles.aboutContent}>
-          I&apos;m currently pursuing a Bachelor of Science degree in Computer
-          Science, awarded by the University of Westminster (UK) through the
-          Informatics Institute of Technology (IIT) in Sri Lanka, where I&apos;m
-          deeply engaged in exploring the ever-evolving world of software and
-          digital innovation. Alongside my academic journey, I work part-time as
-          an Associate Web Developer at Izatic, where I collaborate with a team
-          to build functional and visually compelling web solutions that solve
-          real-world problems. Outside the world of code, I&apos;m also a
-          passionate photographer — capturing moments, moods, and stories
-          through my lens. Whether I&apos;m refining a front-end interface or
-          framing a perfect shot, I&apos;m driven by a love for creativity,
-          precision, and meaningful expression in both digital and visual
-          mediums. My work reflects a balance between technical curiosity and
-          artistic intuition, and I&apos;m always eager to keep learning,
-          building, and pushing the boundaries of what I can create.
-        </p>
+        </motion.h2>
+        <AnimatedParagraph
+          className={styles.aboutContent}
+          text={`I'm currently pursuing a Bachelor of Science degree in Computer Science, awarded by the University of Westminster (UK) through the Informatics Institute of Technology (IIT) in Sri Lanka, where I'm deeply engaged in exploring the ever-evolving world of software and digital innovation. Alongside my academic journey, I work part-time as an Associate Web Developer at Izatic, where I collaborate with a team to build functional and visually compelling web solutions that solve real-world problems. Outside the world of code, I'm also a passionate photographer — capturing moments, moods, and stories through my lens. Whether I'm refining a front-end interface or framing a perfect shot, I'm driven by a love for creativity, precision, and meaningful expression in both digital and visual mediums. My work reflects a balance between technical curiosity and artistic intuition, and I'm always eager to keep learning, building, and pushing the boundaries of what I can create.`}
+        />
 
-        <h2 className={styles.techTitle}>
+        <motion.h2
+          className={styles.techTitle}
+          initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
           <span className={styles.aboutTitleSymbol}>~</span>
           TECHNOLOGIES
           <span className={styles.aboutTitleSymbol}>~</span>
-        </h2>
-        <p className={styles.techStack}>
-          Python / Javascript / React / Wordpress / Framer
-        </p>
+        </motion.h2>
+        <AnimatedTechStack
+          className={styles.techStack}
+          techs="Python / Javascript / React / Wordpress / Framer"
+        />
 
-        <h2 className={styles.techTitle}>
+        <motion.h2
+          className={styles.techTitle}
+          initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
           <span className={styles.aboutTitleSymbol}>~</span>
           WORK EXPERIENCE
           <span className={styles.aboutTitleSymbol}>~</span>
-        </h2>
+        </motion.h2>
 
         <div className={styles.workExperienceContainer}>
           <WorkExperienceCard

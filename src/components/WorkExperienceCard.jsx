@@ -27,6 +27,7 @@ const WorkExperienceCard = ({
       <div className={styles.sec3}>
         <p>{description}</p>
       </div>
+      <div className={styles.glowLine}></div>
     </div>
   );
 };
