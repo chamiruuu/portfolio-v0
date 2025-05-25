@@ -132,7 +132,7 @@ ScrollReveal.propTypes = {
   children: PropTypes.node, // Can be any renderable React node
   scrollContainerRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    PropTypes.shape({ current: PropTypes.any })
   ]),
   enableBlur: PropTypes.bool,
   baseOpacity: PropTypes.number,
