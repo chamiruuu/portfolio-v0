@@ -10,6 +10,7 @@ const ProjectsCard = ({
   description = "A simple python script that is with GUI the function of the script is to make sorting files easy.",
   technologies = ["Python", "CustomTinker"],
   repoUrl = "#",
+  imageUrl = projectImage, // <- NEW PROP with default fallback
   animationVariants, // <- NEW PROP
 }) => {
   return (
@@ -30,7 +31,7 @@ const ProjectsCard = ({
       }
     >
       <div className={styles.imagePlaceholder}>
-        <img src={projectImage} alt="Project" />
+        <img src={imageUrl} alt="Project" />
       </div>
       <div className={styles.texts}>
         <div className={styles.titleWrapper}>
@@ -66,6 +67,7 @@ ProjectsCard.propTypes = {
   description: PropTypes.string,
   technologies: PropTypes.arrayOf(PropTypes.string),
   repoUrl: PropTypes.string,
+  imageUrl: PropTypes.string, // <- NEW PROP VALIDATION
   animationVariants: PropTypes.object, // <- NEW PROP VALIDATION
 };
 

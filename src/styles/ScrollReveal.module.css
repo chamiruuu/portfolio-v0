@@ -1,13 +1,16 @@
+/* Styles for the main scroll reveal container */
 .scrollReveal {
   margin: 20px 0;
 }
 
+/* Styles for the text element within the scroll reveal */
 .scrollRevealText {
-  font-size: clamp(1.6rem, 1.6vw, 3rem);
+  font-size: clamp(1.6rem, 1.6vw, 1em); /* Responsive font size */
   line-height: 1.5;
   font-weight: 600;
 }
 
+/* Styles for individual words, allowing them to be animated independently */
 .word {
-  display: inline-block;
+  display: inline-block; /* Essential for applying transforms and individual animations */
 }
