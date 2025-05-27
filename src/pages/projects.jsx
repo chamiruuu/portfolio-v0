@@ -1,49 +1,52 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import ScrollDownArrow from "../components/ScrollDownArrow";
 import styles from "../styles/Projects.module.css";
 import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import ShinyText from "../components/ShinyText";
+import Beams from "../components/Beams";
 
 const Projects = () => {
-  const fullText = "that i have worked on and working on";
-  const [typedText, setTypedText] = useState("");
-  const [index, setIndex] = useState(0);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  // No need to memoize BackgroundBeams as it's already wrapped in React.memo
-
-  useEffect(() => {
-    if (index < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText((prev) => prev + fullText[index]);
-        setIndex(index + 1);
-      }, 75); // Slowed down typing animation for better performance
-      return () => clearTimeout(timeout);
-    } else {
-      setIsTypingComplete(true);
-    }
-  }, [index, fullText]);
-
   return (
     <div className={styles.container}>
       <NavBar />
       <section className={styles.heroSection}>
-        <motion.div
-          className={styles.heroContent}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        >
-          <h1>PROJECTS</h1>
+        <div className={styles.beamsBg}>
+          <Beams
+            beamWidth={18}
+            beamHeight={150}
+            beamNumber={1}
+            lightColor="#ffffff"
+            speed={6}
+            noiseIntensity={1.75}
+            scale={0.1}
+            rotation={30}
+          />
+        </div>
+        <div className={styles.heroContent}>
+          <h1>Selected Work</h1>
           <span>
-            {typedText}
-            {!isTypingComplete && <span className={styles.cursor}>|</span>}
+            A curated collection of projects showcasing design thinking and
+            technical execution.
           </span>
-        </motion.div>
-        <ScrollDownArrow />
+          <a
+            className={styles.viewProjectsBtn}
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .querySelector(`.${styles.projectsSectionOne}`)
+                .scrollIntoView({ behavior: "smooth" });
+            }}
+            href="#"
+          >
+            <ShinyText
+              text="VIEW PROJECTS"
+              disabled={false}
+              speed={3}
+              className={styles.viewProjectsBtnlink}
+            />
+          </a>
+        </div>
       </section>
 
       <section className={styles.projectsSectionOne}>

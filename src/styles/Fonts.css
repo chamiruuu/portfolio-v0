@@ -2,10 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&display=swap');
+
 
 @font-face {
   font-family: 'ThePrestigeSignature';
   src: url('../fonts/Theprestigesignature-ywwaM.otf') format('opentype');
   font-weight: normal;
+  font-style: normal;
+}
+
+.anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }
