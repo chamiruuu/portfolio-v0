@@ -102,8 +102,8 @@
 }
 
 .verticalLink {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  writing-mode: vertical-rl !important;
+  transform: rotate(180deg) !important;;
   color: white;
   text-decoration: none;
   font-family: "Michroma", sans-serif;

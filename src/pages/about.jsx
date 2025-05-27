@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import WorkExperienceCard from "../components/WorkExperienceCard";
 import styles from "../styles/About.module.css";
-import abtheroimg from "../assets/abtheroimg.avif";
+import ImageEffect from "../components/ImageDistort";
 import Timeline from "../components/EducationalTimeline";
 import LetterSplit from "../components/LetterSplit";
 import { useState } from "react";
@@ -16,35 +16,69 @@ const handleAnimationComplete = () => {
 
 const About = () => {
   const [showSecondLine, setShowSecondLine] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Handle image load completion
+  const handleImageLoaded = () => {
+    setImageLoaded(true);
+  };
 
   return (
     <div className={styles.aboutContainer}>
       <NavBar />
       <section className={styles.heroSection}>
         <div className={styles.imageLinksWrapper}>
-          <div className={styles.verticalLinksContainer}>
-            <a href="#" className={`${styles.verticalLink} ${styles.gallery}`}>
+          <motion.div
+            className={styles.verticalLinksContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: imageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <motion.a
+              href="#"
+              className={`${styles.verticalLink} ${styles.gallery}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: imageLoaded ? 1 : 0,
+                y: imageLoaded ? 0 : 20,
+              }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
               GALLERY
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#"
               className={`${styles.verticalLink} ${styles.playground}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: imageLoaded ? 1 : 0,
+                y: imageLoaded ? 0 : 20,
+              }}
+              transition={{ duration: 0.5, delay: 0.7 }}
             >
               PLAYGROUND
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#"
               className={`${styles.verticalLink} ${styles.threedimensional}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: imageLoaded ? 1 : 0,
+                y: imageLoaded ? 0 : 20,
+              }}
+              transition={{ duration: 0.5, delay: 0.8 }}
             >
               THREEDIMENSIONAL
-            </a>
-          </div>
-          <img
-            src={abtheroimg}
-            loading="lazy"
-            alt="Hero"
-            className={styles.heroImage}
-          />
+            </motion.a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            onAnimationComplete={handleImageLoaded}
+          >
+            <ImageEffect />
+          </motion.div>
         </div>
         <div className={styles.heroText}>
           <div style={{ width: "100%" }}>

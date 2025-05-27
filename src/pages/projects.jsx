@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -6,7 +6,6 @@ import ScrollDownArrow from "../components/ScrollDownArrow";
 import styles from "../styles/Projects.module.css";
 import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import LetterGlitch from "../components/LetterGlitch";
 
 const Projects = () => {
   const fullText = "that i have worked on and working on";
@@ -14,16 +13,7 @@ const Projects = () => {
   const [index, setIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
-  // Memoize the LetterGlitch component to prevent unnecessary re-renders
-  const letterGlitch = useMemo(() => (
-    <LetterGlitch
-      glitchSpeed={100} // Reduced glitch speed for better performance
-      centerVignette={false}
-      outerVignette={false}
-      smooth={true}
-      className={styles.letterGlitchBackground}
-    />
-  ), []);
+  // No need to memoize BackgroundBeams as it's already wrapped in React.memo
 
   useEffect(() => {
     if (index < fullText.length) {
@@ -41,7 +31,6 @@ const Projects = () => {
     <div className={styles.container}>
       <NavBar />
       <section className={styles.heroSection}>
-        {letterGlitch}
         <motion.div
           className={styles.heroContent}
           initial={{ opacity: 0, y: 30 }}
