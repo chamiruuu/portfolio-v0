@@ -1,10 +1,9 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import styles from "../styles/Projects.module.css";
-import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import ShinyText from "../components/ShinyText";
 import Beams from "../components/Beams";
+import BentoCard from "../components/BentoCard";
 
 const Projects = () => {
   return (
@@ -18,7 +17,7 @@ const Projects = () => {
             beamNumber={1}
             lightColor="#ffffff"
             speed={6}
-            noiseIntensity={1.75}
+            noiseIntensity={4}
             scale={0.1}
             rotation={30}
           />
@@ -50,36 +49,7 @@ const Projects = () => {
       </section>
 
       <section className={styles.projectsSectionOne}>
-        <div className={styles.projectDetails}>
-          <span className={styles.date}>~ 2024 DEC</span>
-          <h2 className={styles.projectTitle}>Invoice Generator</h2>
-          <p className={styles.projectDescription}>
-            A simple python script that is with GUI the function of the script
-            is to make sorting files easy. A simple python script that is with
-            GUI the function of the script is to make sorting files easy. A
-            simple python script that is with GUI the function of the script is
-            to make sorting files easy. A simple python script that is with GUI
-            the function of the script is to make sorting files easy. A simple
-            python script that is with GUI the function of the script is to make
-            sorting files easy.
-          </p>
-          <div className={styles.projectLinks}>
-            <a href="#" className={styles.projectLink}>
-              To find out more{" "}
-              <KeyboardDoubleArrowRightRoundedIcon
-                className={styles.rightArrow}
-              />
-            </a>
-            <a
-              href="https://github.com/yourusername/project"
-              className={styles.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitHubIcon className={styles.githubIcon} />
-            </a>
-          </div>
-        </div>
+        <BentoCard />
       </section>
       <Footer />
     </div>

@@ -121,9 +121,9 @@ const ScrollReveal = ({
 
   return (
     // Apply module classes and any additional class names
-    <h2 ref={containerRef} className={`${styles.scrollReveal} ${containerClassName}`}>
-      <p className={`${styles.scrollRevealText} ${textClassName}`}>{splitText}</p>
-    </h2>
+    <div ref={containerRef} className={`${styles.scrollReveal} ${containerClassName}`}>
+      <span className={`${styles.scrollRevealText} ${textClassName}`}>{splitText}</span>
+    </div>
   );
 };
 

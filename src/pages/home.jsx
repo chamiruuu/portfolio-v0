@@ -84,7 +84,7 @@ const Home = () => {
           ABOUT ME
           <span className={styles.aboutTitleSymbol}>~</span>
         </motion.h2>
-        <p className={styles.aboutContent}>
+        <div className={styles.aboutContent}>
           <ScrollReveal
             baseOpacity={0}
             enableBlur={true}
@@ -95,10 +95,10 @@ const Home = () => {
             into real, working things through code. I’m currently pursuing a BSc
             (Hons) in Computer Science, which continues to deepen my
             understanding of the field and fuel my curiosity. I enjoy learning
-            new technologies, experimenting with different tools, and growing
+            new            technologies, experimenting with different tools, and growing
             through every project I take on.
           </ScrollReveal>
-        </p>
+        </div>
 
         <motion.h3
           className={styles.projectsLabel}

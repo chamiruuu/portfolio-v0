@@ -1,0 +1,153 @@
+.sectiongrid {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #000;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px; /* Optimal width for MacBook Pro 14-inch */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: auto;
+  gap: 0.4rem; /* Slightly increased gap to match the image */
+  width: 100%;
+}
+.item {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #000; /* Adding black border to match the image */
+}
+/* Using aspect-ratio to maintain dimensions proportionally */
+.mobile-only {
+  display: block;
+}
+.desktop-only {
+  display: none;
+}
+
+/* Project card content styling */
+.project-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.project-tech {
+  font-size: 0.85rem;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.project-number {
+  font-size: 2rem;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.project-date {
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #333;
+}
+
+.arrow-link {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.item-1 {
+  aspect-ratio: 400/260; /* Reduced height from 300 to 260 */
+  grid-column: 1 / span 6;
+  grid-row: 1 / span 2;
+}
+
+.item-2 {
+  aspect-ratio: 592/382; /* Reduced height from 420 to 380 */
+  grid-column: 1 / span 6;
+  grid-row: 3 / span 2;
+}
+
+.item-3 {
+  aspect-ratio: 592/380; /* Reduced height from 420 to 380 */
+  grid-column: 1 / span 6;
+  grid-row: 5 / span 2;
+}
+
+.item-4 {
+  aspect-ratio: 392/254; /* Reduced height from 300 to 260 */
+  grid-column: 1 / span 6;
+  grid-row: 7 / span 2;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: auto;
+    gap: 0.4rem;
+  }
+  .mobile-only {
+    display: none;
+  }
+  .desktop-only {
+    display: block;
+  }
+
+  /* Desktop layout maintains aspect ratios */
+  .item-1 {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 3;
+    /* aspect-ratio already set in base styles */
+  }
+
+  .item-2 {
+    grid-column: 4 / span 3;
+    grid-row: 1 / span 4;
+    /* aspect-ratio already set in base styles */
+  }
+
+  .item-3 {
+    grid-column: 1 / span 3;
+    grid-row: 4 / span 4;
+    /* aspect-ratio already set in base styles */
+  }
+
+  .item-4 {
+    grid-column: 4 / span 2;
+    grid-row: 5 / span 3;
+    height: fit-content; /* Prevent overflow */
+    max-height: 100%; /* Ensure it doesn't exceed container height */
+    /* aspect-ratio already set in base styles */
+  }
+}
