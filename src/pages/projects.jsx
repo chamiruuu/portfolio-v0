@@ -4,6 +4,9 @@ import styles from "../styles/Projects.module.css";
 import ShinyText from "../components/ShinyText";
 import Beams from "../components/Beams";
 import BentoCard from "../components/BentoCard";
+import SplitText from "../components/SplitText";
+import AnimatedParagraph from "../components/AnimatedParagraph";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   return (
@@ -23,12 +26,17 @@ const Projects = () => {
           />
         </div>
         <div className={styles.heroContent}>
-          <h1>Selected Work</h1>
-          <span>
-            A curated collection of projects showcasing design thinking and
-            technical execution.
-          </span>
-          <a
+          {/* Using SplitText for animating the title */}
+          <SplitText text="Selected Work" className={styles.animatedTitle} />
+
+          {/* Using AnimatedParagraph for the description text */}
+          <AnimatedParagraph
+            text="A curated collection of projects showcasing design thinking and technical execution."
+            className={styles.animatedDescription}
+          />
+
+          {/* Animated button with motion */}
+          <motion.a
             className={styles.viewProjectsBtn}
             onClick={(e) => {
               e.preventDefault();
@@ -37,6 +45,13 @@ const Projects = () => {
                 .scrollIntoView({ behavior: "smooth" });
             }}
             href="#"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 1.2,
+              duration: 0.5,
+              ease: "easeOut",
+            }}
           >
             <ShinyText
               text="VIEW PROJECTS"
@@ -44,7 +59,7 @@ const Projects = () => {
               speed={3}
               className={styles.viewProjectsBtnlink}
             />
-          </a>
+          </motion.a>
         </div>
       </section>
 

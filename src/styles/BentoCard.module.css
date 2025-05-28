@@ -32,6 +32,9 @@
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #000; /* Adding black border to match the image */
+  opacity: 0; /* Start invisible for the animation */
+  transform: translateY(20px); /* Start slightly below for animation */
+  will-change: opacity, transform; /* Optimize for animation */
 }
 /* Using aspect-ratio to maintain dimensions proportionally */
 .mobile-only {
