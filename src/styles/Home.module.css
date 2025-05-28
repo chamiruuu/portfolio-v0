@@ -26,7 +26,7 @@
 
 .title {
   font-size: 14.4rem;
-  font-family: "ThePrestigeSignature", sans-serif;
+  font-family: "ThePrestigeSignature", monospace; /* Added fallback that's very different */
   font-weight: 400;
   font-style: normal;
   margin: 0%;
@@ -34,6 +34,8 @@
   text-align: center;
   line-height: 90%;
   color: #d7d7d7;
+  visibility: visible;
+  will-change: contents; /* Hint to the browser that this will change to improve rendering */
 }
 
 .subtext{
@@ -85,7 +87,7 @@
 }
 
 .aboutContent {
-  max-width: 70%;
+  max-width: 60%;
   text-align: center;
   font-size: 1.25rem; /* 16px */
   line-height: 1.6;

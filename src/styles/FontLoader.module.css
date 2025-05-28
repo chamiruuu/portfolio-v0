@@ -1,0 +1,8 @@
+/* Font loader styles */
+.fontLoaderContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Note: Global classes are defined in Fonts.css */
+/* These styles are here for component-specific styling only */

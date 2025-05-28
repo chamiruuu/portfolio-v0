@@ -3,6 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/logo.svg" />
+    <link rel="preload" href="/src/fonts/Theprestigesignature-ywwaM.otf" as="font" type="font/otf" crossorigin="anonymous" />
+    <style>
+      /* Critical path CSS to prevent font swap issues */
+      @font-face {
+        font-family: 'ThePrestigeSignature';
+        src: url('/src/fonts/Theprestigesignature-ywwaM.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+      }
+      
+      /* Hide text until font is loaded */
+      .fonts-loading .title {
+        visibility: hidden !important;
+        opacity: 0 !important;
+      }
+      
+      /* Ensure we have a strategy to prevent layout shifts */
+      body {
+        font-synthesis: none; /* Disable synthetic font styles */
+      }
+    </style>
+    
+    <!-- Prevent FOIT (Flash of Invisible Text) with this script -->
+    <script>
+      // Add a class to document to show loading state
+      document.documentElement.classList.add('fonts-loading');
+      
+      // When the font is loaded, update the class
+      if (document.fonts) {
+        document.fonts.addEventListener('loadingdone', function() {
+          document.documentElement.classList.remove('fonts-loading');
+          document.documentElement.classList.add('fonts-loaded');
+        });
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Chamiru Fernando - Creative Coder & Web Developer Portfolio. Explore my projects, articles, and expertise in web development, design, and creative coding." />
     <meta name="keywords" content="web developer, creative coder, portfolio, React, JavaScript, Python" />
