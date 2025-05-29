@@ -35,28 +35,55 @@ const ContextLossHandler = () => {
       canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
     }
     
-    // Patch WebGL for texture immutability errors
+    // Improved WebGL patches for texture immutability errors
     if (typeof WebGLRenderingContext !== 'undefined') {
+      // Patch texImage2D
       const originalTexImage2D = WebGLRenderingContext.prototype.texImage2D;
       WebGLRenderingContext.prototype.texImage2D = function(...args) {
         try {
           return originalTexImage2D.apply(this, args);
         } catch (error) {
           if (error.message && error.message.includes('immutable')) {
-            console.warn('Prevented texture immutability error');
+            console.warn('Prevented texture immutability error in texImage2D');
             return null;
           }
           throw error;
         }
       };
       
+      // Patch texSubImage2D
+      const originalTexSubImage2D = WebGLRenderingContext.prototype.texSubImage2D;
+      WebGLRenderingContext.prototype.texSubImage2D = function(...args) {
+        try {
+          return originalTexSubImage2D.apply(this, args);
+        } catch (error) {
+          if (error.message && error.message.includes('immutable')) {
+            console.warn('Prevented texture immutability error in texSubImage2D');
+            return null;
+          }
+          throw error;
+        }
+      };
+      
+      // Handle WebGL2 context if available
+      if (typeof WebGL2RenderingContext !== 'undefined') {
+        WebGL2RenderingContext.prototype.texImage2D = WebGLRenderingContext.prototype.texImage2D;
+        WebGL2RenderingContext.prototype.texSubImage2D = WebGLRenderingContext.prototype.texSubImage2D;
+      }
+      
       return () => {
         if (canvas) {
           canvas.removeEventListener('webglcontextlost', handleContextLoss);
           canvas.removeEventListener('webglcontextrestored', handleContextRestored);
         }
-        // Restore original method
+        // Restore original methods
         WebGLRenderingContext.prototype.texImage2D = originalTexImage2D;
+        WebGLRenderingContext.prototype.texSubImage2D = originalTexSubImage2D;
+        
+        if (typeof WebGL2RenderingContext !== 'undefined') {
+          WebGL2RenderingContext.prototype.texImage2D = originalTexImage2D;
+          WebGL2RenderingContext.prototype.texSubImage2D = originalTexSubImage2D;
+        }
       };
     }
     
@@ -125,10 +152,21 @@ const CanvasWrapper = ({ children }) => (
     dpr={[1, 2]} 
     frameloop="always" 
     className="beams-container"
+    gl={{
+      powerPreference: 'high-performance',
+      preserveDrawingBuffer: true,
+      antialias: true,
+      alpha: true,
+      depth: true,
+      stencil: false,
+      // Prevent texture immutability issues
+      pixelStorei: [
+        [WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, false],
+        [WebGLRenderingContext.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false]
+      ]
+    }}
     onCreated={({ gl }) => {
       // Improve WebGL performance and stability
-      gl.powerPreference = 'high-performance';
-      gl.preserveDrawingBuffer = true;
       gl.shadowMap.enabled = true;
       gl.shadowMap.type = THREE.PCFSoftShadowMap;
       
@@ -138,6 +176,21 @@ const CanvasWrapper = ({ children }) => (
         e.preventDefault();
         console.log('WebGL context lost - automatic restoration in progress');
       }, false);
+      
+      // Add texture cleanup handler to renderer
+      const originalRender = gl.render;
+      gl.render = function(...args) {
+        try {
+          return originalRender.apply(this, args);
+        } catch (error) {
+          if (error.message && error.message.includes('texture')) {
+            console.warn('Caught texture error in render, attempting recovery');
+            this.forceContextRestore();
+            return null;
+          }
+          throw error;
+        }
+      };
     }}
   >
     <ContextLossHandler />
@@ -392,12 +445,35 @@ const MergedPlanes = forwardRef(({ material, width, count, height }, ref) => {
     [count, width, height]
   );
   
-  // Add cleanup to dispose resources when component unmounts
+  // Track the previous material to dispose it properly
+  const prevMaterial = useRef(null);
+  
+  // Add cleanup to dispose resources when component unmounts or material changes
   useEffect(() => {
     return () => {
       if (geometry) geometry.dispose();
+      
+      // Clean up previous material if it exists and is different
+      if (prevMaterial.current && 
+          prevMaterial.current !== material && 
+          !prevMaterial.current.isDisposed) {
+        try {
+          // Safely dispose textures if they exist
+          Object.values(prevMaterial.current.uniforms || {}).forEach(uniform => {
+            if (uniform && uniform.value && uniform.value.isTexture) {
+              uniform.value.dispose();
+            }
+          });
+          prevMaterial.current.dispose();
+          prevMaterial.current.isDisposed = true;
+        } catch (err) {
+          console.warn('Error during material cleanup:', err);
+        }
+      }
+      
+      prevMaterial.current = material;
     };
-  }, [geometry]);
+  }, [geometry, material]);
   
   // Use safe animation frame update with error handling
   useFrame((_, delta) => {
@@ -405,8 +481,9 @@ const MergedPlanes = forwardRef(({ material, width, count, height }, ref) => {
       if (mesh.current && mesh.current.material && mesh.current.material.uniforms) {
         mesh.current.material.uniforms.time.value += 0.1 * delta;
       }
-    } catch {
+    } catch (err) {
       // Silently catch errors to prevent crashes
+      console.debug('Animation frame error:', err);
     }
   });
   
