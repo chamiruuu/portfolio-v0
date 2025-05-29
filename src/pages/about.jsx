@@ -89,7 +89,7 @@ const About = () => {
                 text="I'M CHAMIRURF, A CREATIVE CODER"
                 delay={80}
                 animateBy="letters"
-                direction="down"
+                direction="bottom"
                 onAnimationComplete={() => setShowSecondLine(true)}
               />
               {showSecondLine && (
@@ -97,7 +97,7 @@ const About = () => {
                   text="BUILDING BOLD DIGITAL EXPERIENCES."
                   delay={50}
                   animateBy="letters"
-                  direction="down"
+                  direction="bottom"
                   onAnimationComplete={handleAnimationComplete}
                 />
               )}
