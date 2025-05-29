@@ -15,13 +15,13 @@ const Projects = () => {
       <section className={styles.heroSection}>
         <div className={styles.beamsBg}>
           <Beams
-            beamWidth={18}
-            beamHeight={150}
-            beamNumber={1}
+            beamWidth={3}
+            beamHeight={30}
+            beamNumber={20}
             lightColor="#ffffff"
-            speed={6}
-            noiseIntensity={4}
-            scale={0.1}
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
             rotation={30}
           />
         </div>

@@ -1,11 +1,13 @@
 import NavBar from "../components/NavBar";
 import styles from "../styles/Contact.module.css";
 import Footer from "../components/Footer";
+import GlobeBackground from "../components/GlobeBackground";
 
 
 const Contact = () => {
   return (
     <div className={styles.container}>
+      <GlobeBackground />
       <NavBar />
       <section className={styles.heroSection}>
         <div className={styles.heroContent}>
@@ -25,7 +27,6 @@ const Contact = () => {
         </div>
       </section>
       <Footer className={styles.footer}/>
-
     </div>
   );
 }

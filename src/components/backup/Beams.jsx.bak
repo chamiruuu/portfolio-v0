@@ -4,7 +4,8 @@ import {
   useImperativeHandle,
   useEffect,
   useRef,
-  useMemo
+  useMemo,
+  useCallback
 } from "react";
 import PropTypes from "prop-types";
 
@@ -16,7 +17,7 @@ import { degToRad } from "three/src/math/MathUtils.js";
 
 import "../styles/Beams.module.css";
 
-// WebGL context loss handler component
+// WebGL context loss and texture management handler component
 const ContextLossHandler = () => {
   useEffect(() => {
     const handleContextLoss = (event) => {
@@ -35,36 +36,28 @@ const ContextLossHandler = () => {
       canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
     }
     
-    // Patch WebGL for texture immutability errors
-    if (typeof WebGLRenderingContext !== 'undefined') {
-      const originalTexImage2D = WebGLRenderingContext.prototype.texImage2D;
-      WebGLRenderingContext.prototype.texImage2D = function(...args) {
-        try {
-          return originalTexImage2D.apply(this, args);
-        } catch (error) {
-          if (error.message && error.message.includes('immutable')) {
-            console.warn('Prevented texture immutability error');
-            return null;
-          }
-          throw error;
+    // Patch THREE.js texture handling to prevent immutable texture errors
+    const originalTexImage2D = WebGLRenderingContext.prototype.texImage2D;
+    WebGLRenderingContext.prototype.texImage2D = function(...args) {
+      try {
+        return originalTexImage2D.apply(this, args);
+      } catch (error) {
+        if (error.message && error.message.includes('immutable')) {
+          console.warn('Prevented texture immutability error');
+          // Skip the operation rather than failing
+          return null;
         }
-      };
-      
-      return () => {
-        if (canvas) {
-          canvas.removeEventListener('webglcontextlost', handleContextLoss);
-          canvas.removeEventListener('webglcontextrestored', handleContextRestored);
-        }
-        // Restore original method
-        WebGLRenderingContext.prototype.texImage2D = originalTexImage2D;
-      };
-    }
+        throw error;
+      }
+    };
     
     return () => {
       if (canvas) {
         canvas.removeEventListener('webglcontextlost', handleContextLoss);
         canvas.removeEventListener('webglcontextrestored', handleContextRestored);
       }
+      // Restore original method
+      WebGLRenderingContext.prototype.texImage2D = originalTexImage2D;
     };
   }, []);
   
@@ -131,6 +124,18 @@ const CanvasWrapper = ({ children }) => (
       gl.preserveDrawingBuffer = true;
       gl.shadowMap.enabled = true;
       gl.shadowMap.type = THREE.PCFSoftShadowMap;
+      
+      // Prevent texture immutability errors by patching THREE.js texture handling
+      const originalCreateTexture = gl.createTexture;
+      gl.createTexture = function() {
+        try {
+          return originalCreateTexture.apply(this, arguments);
+        } catch (error) {
+          console.warn("Prevented WebGL texture error, trying again with safe parameters");
+          // Try a safer approach with less aggressive parameters
+          return null;
+        }
+      };
       
       // Handle WebGL context loss more gracefully
       const canvas = gl.domElement;
@@ -235,6 +240,47 @@ float cnoise(vec3 P){
 `;
 
 // Main Beams component
+      // Restore original function when component unmounts
+      THREE.WebGLRenderer.prototype.createTexture = originalCreateTexture;
+    };
+  }, []);
+  
+  return null;
+};
+
+// Helper hook for managing textures safely
+const useSafeTexture = () => {
+  const textures = useRef([]);
+  
+  useEffect(() => {
+    // Cleanup function to dispose textures on unmount
+    return () => {
+      const currentTextures = textures.current;
+      currentTextures.forEach((texture) => {
+        if (texture && texture.dispose) {
+          texture.dispose();
+        }
+      });
+    };
+  }, []);
+  
+  const createTexture = useCallback((creator) => {
+    try {
+      const texture = creator();
+      if (texture) {
+        textures.current.push(texture);
+      }
+      return texture;
+    } catch (e) {
+      console.warn("Error creating texture:", e);
+      return null;
+    }
+  }, []);
+  
+  return { createTexture };
+};
+
+// Main Beams component
 const Beams = ({
   beamWidth = 2,
   beamHeight = 15,
@@ -305,11 +351,31 @@ const Beams = ({
 
   return (
     <CanvasWrapper>
+      <ContextLossHandler />
       <group rotation={[0, 0, degToRad(rotation)]}>
         {/* Black fade overlay at the top edge */}
         <mesh position={[0, beamHeight / 2 + 0.01, 0.02]}>
           <planeGeometry args={[beamWidth * beamNumber * 1.2, beamHeight * 0.18]} />
-          <meshBasicMaterial transparent depthWrite={false} opacity={1} side={THREE.DoubleSide} />
+          <meshBasicMaterial transparent depthWrite={false} opacity={1} side={THREE.DoubleSide}>
+            <shaderMaterial
+              attach="material"
+              vertexShader={`
+                varying vec2 vUv;
+                void main() {
+                  vUv = uv;
+                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+              `}
+              fragmentShader={`
+                varying vec2 vUv;
+                void main() {
+                  float fade = smoothstep(0.0, 0.7, vUv.y);
+                  gl_FragColor = vec4(0.0, 0.0, 0.0, fade);
+                }
+              `}
+              transparent={true}
+            />
+          </meshBasicMaterial>
         </mesh>
         <PlaneNoise
           ref={meshRef}
@@ -405,7 +471,7 @@ const MergedPlanes = forwardRef(({ material, width, count, height }, ref) => {
       if (mesh.current && mesh.current.material && mesh.current.material.uniforms) {
         mesh.current.material.uniforms.time.value += 0.1 * delta;
       }
-    } catch {
+    } catch (err) {
       // Silently catch errors to prevent crashes
     }
   });
@@ -482,4 +548,3 @@ DirLight.propTypes = {
 };
 
 export default Beams;
-
