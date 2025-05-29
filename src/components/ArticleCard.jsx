@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from "../styles/ArticleCard.module.css";
-import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
+import { MdOutlineReadMore } from "react-icons/md";
 
 const ArticleCard = ({
   category = "TUTORIAL",
@@ -22,7 +22,7 @@ const ArticleCard = ({
       <div className={styles.details}>
         <span>{readTime}</span>
         <span>Last updated {lastUpdated}</span>
-        <button onClick={() => window.location.href = link}>READ MORE<ReadMoreRoundedIcon className={styles.arrowIcon} /></button>
+        <button onClick={() => window.location.href = link}>READ MORE<MdOutlineReadMore className={styles.arrowIcon} /></button>
       </div>
     </div>
   );

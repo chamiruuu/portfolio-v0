@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "../styles/ProjectCard.module.css";
 import projectImage from "../assets/Rectangle 6.png";
 import { MdOutlineReadMore } from "react-icons/md";
@@ -10,8 +11,8 @@ const ProjectsCard = ({
   description = "A simple python script that is with GUI the function of the script is to make sorting files easy.",
   technologies = ["Python", "CustomTinker"],
   repoUrl = "#",
-  imageUrl = projectImage, // <- NEW PROP with default fallback
-  animationVariants, // <- NEW PROP
+  imageUrl = projectImage,
+  animationVariants,
 }) => {
   return (
     <motion.div
@@ -67,8 +68,9 @@ ProjectsCard.propTypes = {
   description: PropTypes.string,
   technologies: PropTypes.arrayOf(PropTypes.string),
   repoUrl: PropTypes.string,
-  imageUrl: PropTypes.string, // <- NEW PROP VALIDATION
-  animationVariants: PropTypes.object, // <- NEW PROP VALIDATION
+  imageUrl: PropTypes.string,
+  animationVariants: PropTypes.object,
 };
 
-export default ProjectsCard;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(ProjectsCard);

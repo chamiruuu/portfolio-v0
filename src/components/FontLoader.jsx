@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/FontLoader.module.css';
 
@@ -6,14 +6,18 @@ import styles from '../styles/FontLoader.module.css';
 // by ensuring that custom fonts are loaded before displaying content
 const FontLoader = ({ children }) => {
   const [fontLoaded, setFontLoaded] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Function to force a redraw/reflow to help with font rendering
+    // Using refs instead of direct DOM manipulation
     const forceReflow = () => {
-      document.body.style.display = 'none';
-      // Force a reflow
-      void document.body.offsetHeight;
-      document.body.style.display = '';
+      if (containerRef.current) {
+        // Trigger reflow in a React-friendly way
+        containerRef.current.style.display = 'none';
+        void containerRef.current.offsetHeight;
+        containerRef.current.style.display = '';
+      }
     };
   
     // Handle font loading in a comprehensive way

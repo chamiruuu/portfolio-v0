@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "../styles/NavBar.module.css";
-import TranslateRoundedIcon from "@mui/icons-material/TranslateRounded";
-import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import { MdLightMode } from "react-icons/md";
+import { IoLanguage } from "react-icons/io5";
+
+
 import logo from "../assets/logo.svg";
 
 const NavBar = () => {
@@ -37,8 +39,8 @@ const NavBar = () => {
         </li>
       </ul>
       <div className={styles.iconContainer}>
-        <TranslateRoundedIcon className={styles.icon} />
-        <LightModeRoundedIcon className={styles.icon} />
+        <IoLanguage className={styles.icon} />
+        <MdLightMode className={styles.icon} />
       </div>
     </motion.nav>
   );

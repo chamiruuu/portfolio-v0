@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "../styles/BentoCard.module.css";
-import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
+import { RiArrowRightUpLine } from "react-icons/ri";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -75,7 +75,7 @@ const BentoCard = () => {
             <div className={styles["project-number"]}>01</div>
             <div className={styles["project-date"]}>- 2024 DEC</div>
             <a href="#" className={styles["arrow-link"]}>
-              <ArrowOutwardRoundedIcon />
+              <RiArrowRightUpLine />
             </a>
           </div>
           <div className={`${styles.item} ${styles["item-2"]}`} ref={el => cardsRef.current[1] = el}>
@@ -86,7 +86,7 @@ const BentoCard = () => {
             <div className={styles["project-number"]}>02</div>
             <div className={styles["project-date"]}>- 2024 DEC</div>
             <a href="#" className={styles["arrow-link"]}>
-              <ArrowOutwardRoundedIcon />
+              <RiArrowRightUpLine />
             </a>
           </div>
           <div className={`${styles.item} ${styles["item-3"]}`} ref={el => cardsRef.current[2] = el}>
@@ -97,7 +97,7 @@ const BentoCard = () => {
             <div className={styles["project-number"]}>03</div>
             <div className={styles["project-date"]}>- 2024 DEC</div>
             <a href="#" className={styles["arrow-link"]}>
-              <ArrowOutwardRoundedIcon />
+              <RiArrowRightUpLine />
             </a>
           </div>
           <div className={`${styles.item} ${styles["item-4"]}`} ref={el => cardsRef.current[3] = el}>
@@ -108,7 +108,7 @@ const BentoCard = () => {
             <div className={styles["project-number"]}>04</div>
             <div className={styles["project-date"]}>- 2024 DEC</div>
             <a href="#" className={styles["arrow-link"]}>
-              <ArrowOutwardRoundedIcon />
+              <RiArrowRightUpLine />
             </a>
           </div>
         </div>

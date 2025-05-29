@@ -1,5 +1,4 @@
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import styles from '../styles/SocialLinks.module.css';
 
@@ -17,7 +16,7 @@ const SocialLinks = () => {
         rel="noopener noreferrer"
         className="social-icon"
       >
-        <GitHubIcon className={styles.icon} />
+        <FaGithub className={styles.icon} />
       </a>
       <a
         href="https://www.linkedin.com/in/chamirufernando"
@@ -25,7 +24,7 @@ const SocialLinks = () => {
         rel="noopener noreferrer"
         className="social-icon"
       >
-        <LinkedInIcon className={styles.icon} />
+        <FaLinkedin className={styles.icon} />
       </a>
       <div className={styles.verticalLine}></div>
     </motion.div>
