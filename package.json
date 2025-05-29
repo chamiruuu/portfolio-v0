@@ -12,7 +12,6 @@
     "preinstall": "npx only-allow npm"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@lottiefiles/dotlottie-react": "^0.13.3",
     "@mui/icons-material": "^7.1.0",
