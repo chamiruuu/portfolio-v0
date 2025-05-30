@@ -15,9 +15,9 @@ import { motion } from "framer-motion";
 import ScrollReveal from "../components/ScrollReveal";
 
 // Import project placeholder images
-import sortlifyImage from "../assets/sortlify placeholder.avif";
-import numscanImage from "../assets/NumScan OCR placeholder.avif";
-import canvasflowImage from "../assets/canvas flow placeholder.avif";
+import sortlifyImage from "../assets/sortlify.avif";
+import numscanImage from "../assets/numscanocr.avif";
+import canvasflowImage from "../assets/canvasflow.avif";
 
 const Home = () => {
   const heroSectionRef = useRef(null);
