@@ -2,7 +2,6 @@ import NavBar from "../components/NavBar";
 import styles from "../styles/Contact.module.css";
 import Footer from "../components/Footer";
 
-
 const Contact = () => {
   return (
     <div className={styles.container}>
