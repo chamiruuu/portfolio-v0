@@ -35,13 +35,20 @@ const ContextLossHandler = () => {
       canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
     }
     
+    // Store original WebGL methods before patching
+    let originalTexImage2D;
+    let originalTexSubImage2D;
+    let originalWebGL2TexImage2D;
+    let originalWebGL2TexSubImage2D;
+    
     // Improved WebGL patches for texture immutability errors
     if (typeof WebGLRenderingContext !== 'undefined') {
-      // Patch texImage2D
-      const originalTexImage2D = WebGLRenderingContext.prototype.texImage2D;
+      // Patch texImage2D - make sure to properly bind 'this' context
+      originalTexImage2D = WebGLRenderingContext.prototype.texImage2D;
       WebGLRenderingContext.prototype.texImage2D = function(...args) {
         try {
-          return originalTexImage2D.apply(this, args);
+          // Use call instead of apply since we're passing the arguments separately
+          return originalTexImage2D.call(this, ...args);
         } catch (error) {
           if (error.message && error.message.includes('immutable')) {
             console.warn('Prevented texture immutability error in texImage2D');
@@ -52,10 +59,11 @@ const ContextLossHandler = () => {
       };
       
       // Patch texSubImage2D
-      const originalTexSubImage2D = WebGLRenderingContext.prototype.texSubImage2D;
+      originalTexSubImage2D = WebGLRenderingContext.prototype.texSubImage2D;
       WebGLRenderingContext.prototype.texSubImage2D = function(...args) {
         try {
-          return originalTexSubImage2D.apply(this, args);
+          // Use call instead of apply to properly preserve the context
+          return originalTexSubImage2D.call(this, ...args);
         } catch (error) {
           if (error.message && error.message.includes('immutable')) {
             console.warn('Prevented texture immutability error in texSubImage2D');
@@ -67,22 +75,53 @@ const ContextLossHandler = () => {
       
       // Handle WebGL2 context if available
       if (typeof WebGL2RenderingContext !== 'undefined') {
-        WebGL2RenderingContext.prototype.texImage2D = WebGLRenderingContext.prototype.texImage2D;
-        WebGL2RenderingContext.prototype.texSubImage2D = WebGLRenderingContext.prototype.texSubImage2D;
+        // Create separate patches for WebGL2 to avoid cross-context issues
+        originalWebGL2TexImage2D = WebGL2RenderingContext.prototype.texImage2D;
+        WebGL2RenderingContext.prototype.texImage2D = function(...args) {
+          try {
+            return originalWebGL2TexImage2D.call(this, ...args);
+          } catch (error) {
+            if (error.message && error.message.includes('immutable')) {
+              console.warn('Prevented texture immutability error in WebGL2 texImage2D');
+              return null;
+            }
+            throw error;
+          }
+        };
+        
+        originalWebGL2TexSubImage2D = WebGL2RenderingContext.prototype.texSubImage2D;
+        WebGL2RenderingContext.prototype.texSubImage2D = function(...args) {
+          try {
+            return originalWebGL2TexSubImage2D.call(this, ...args);
+          } catch (error) {
+            if (error.message && error.message.includes('immutable')) {
+              console.warn('Prevented texture immutability error in WebGL2 texSubImage2D');
+              return null;
+            }
+            throw error;
+          }
+        };
       }
       
       return () => {
+        // Cleanup WebGL event listeners
         if (canvas) {
           canvas.removeEventListener('webglcontextlost', handleContextLoss);
           canvas.removeEventListener('webglcontextrestored', handleContextRestored);
         }
-        // Restore original methods
-        WebGLRenderingContext.prototype.texImage2D = originalTexImage2D;
-        WebGLRenderingContext.prototype.texSubImage2D = originalTexSubImage2D;
         
-        if (typeof WebGL2RenderingContext !== 'undefined') {
-          WebGL2RenderingContext.prototype.texImage2D = originalTexImage2D;
-          WebGL2RenderingContext.prototype.texSubImage2D = originalTexSubImage2D;
+        try {
+          // Restore original WebGL methods
+          WebGLRenderingContext.prototype.texImage2D = originalTexImage2D;
+          WebGLRenderingContext.prototype.texSubImage2D = originalTexSubImage2D;
+          
+          // Restore original WebGL2 methods if available
+          if (typeof WebGL2RenderingContext !== 'undefined') {
+            WebGL2RenderingContext.prototype.texImage2D = originalWebGL2TexImage2D;
+            WebGL2RenderingContext.prototype.texSubImage2D = originalWebGL2TexSubImage2D;
+          }
+        } catch (error) {
+          console.error("Error restoring WebGL methods:", error);
         }
       };
     }
@@ -559,4 +598,3 @@ DirLight.propTypes = {
 };
 
 export default Beams;
-

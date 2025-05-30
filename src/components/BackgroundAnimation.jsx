@@ -171,10 +171,21 @@ const BackgroundAnimation = () => {
         cameraRef.current = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
         cameraRef.current.position.z = 3;
 
-        rendererRef.current = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-        rendererRef.current.setSize(width, height);
-        rendererRef.current.setPixelRatio(window.devicePixelRatio);
-        currentMount.appendChild(rendererRef.current.domElement);
+        try {
+            // Create renderer with proper WebGL context
+            rendererRef.current = new THREE.WebGLRenderer({ 
+                antialias: true, 
+                alpha: false,
+                powerPreference: 'high-performance',
+                failIfMajorPerformanceCaveat: true
+            });
+            rendererRef.current.setSize(width, height);
+            rendererRef.current.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for better performance
+            currentMount.appendChild(rendererRef.current.domElement);
+        } catch (error) {
+            console.error("Failed to initialize WebGL renderer:", error);
+            return;
+        }
 
         const clock = new THREE.Clock();
 
@@ -196,88 +207,137 @@ const BackgroundAnimation = () => {
 
         const animate = () => {
             animationFrameId.current = requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-            if (shaderMaterialRef.current) {
-                shaderMaterialRef.current.uniforms.u_time.value = elapsedTime;
-            }
-            if (rendererRef.current && sceneRef.current && cameraRef.current) {
-                rendererRef.current.render(sceneRef.current, cameraRef.current);
+            
+            try {
+                const elapsedTime = clock.getElapsedTime();
+                
+                if (shaderMaterialRef.current) {
+                    shaderMaterialRef.current.uniforms.u_time.value = elapsedTime;
+                }
+                
+                if (rendererRef.current && sceneRef.current && cameraRef.current) {
+                    rendererRef.current.render(sceneRef.current, cameraRef.current);
+                }
+            } catch (error) {
+                console.error("Error in animation loop:", error);
+                cancelAnimationFrame(animationFrameId.current);
             }
         };
+        
+        // Start animation loop
         animate();
 
     }, [fragmentShader, vertexShader]);
 
     const handleResize = useCallback(() => {
-        // Ensure mountRef.current and its dimensions are valid before proceeding
-        if (!mountRef.current || mountRef.current.clientWidth === 0 || mountRef.current.clientHeight === 0 || !rendererRef.current || !cameraRef.current || !backgroundPlaneRef.current || !shaderMaterialRef.current) {
-            console.warn("BackgroundAnimation: Resize handler called with invalid mount ref or dimensions.");
-            return;
+        try {
+            // Ensure all required references are valid before proceeding
+            if (!mountRef.current || 
+                mountRef.current.clientWidth === 0 || 
+                mountRef.current.clientHeight === 0 || 
+                !rendererRef.current || 
+                !cameraRef.current || 
+                !backgroundPlaneRef.current || 
+                !shaderMaterialRef.current) {
+                console.warn("BackgroundAnimation: Resize handler called with invalid references or dimensions.");
+                return;
+            }
+
+            const currentMount = mountRef.current;
+            const newWidth = currentMount.clientWidth;
+            const newHeight = currentMount.clientHeight;
+
+            // Update camera aspect ratio
+            cameraRef.current.aspect = newWidth / newHeight;
+            cameraRef.current.updateProjectionMatrix();
+
+            // Calculate new plane dimensions
+            const vFOV = THREE.MathUtils.degToRad(cameraRef.current.fov);
+            const newPlaneHeight = 2 * Math.tan(vFOV / 2) * cameraRef.current.position.z;
+            const newPlaneWidth = newPlaneHeight * cameraRef.current.aspect;
+            
+            // Dispose of old geometry and create new one
+            if (backgroundPlaneRef.current.geometry) {
+                backgroundPlaneRef.current.geometry.dispose();
+            }
+            backgroundPlaneRef.current.geometry = new THREE.PlaneGeometry(newPlaneWidth, newPlaneHeight);
+            
+            // Update shader uniforms
+            shaderMaterialRef.current.uniforms.u_resolution.value.set(newWidth, newHeight);
+
+            // Resize renderer
+            rendererRef.current.setSize(newWidth, newHeight);
+            rendererRef.current.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for better performance
+        } catch (error) {
+            console.error("Error during resize handling:", error);
         }
-
-        const currentMount = mountRef.current;
-        const newWidth = currentMount.clientWidth;
-        const newHeight = currentMount.clientHeight;
-
-        cameraRef.current.aspect = newWidth / newHeight;
-        cameraRef.current.updateProjectionMatrix();
-
-        const vFOV = THREE.MathUtils.degToRad(cameraRef.current.fov);
-        const newPlaneHeight = 2 * Math.tan(vFOV / 2) * cameraRef.current.position.z;
-        const newPlaneWidth = newPlaneHeight * cameraRef.current.aspect;
-        
-        if (backgroundPlaneRef.current.geometry) {
-            backgroundPlaneRef.current.geometry.dispose();
-        }
-        backgroundPlaneRef.current.geometry = new THREE.PlaneGeometry(newPlaneWidth, newPlaneHeight);
-        shaderMaterialRef.current.uniforms.u_resolution.value.set(newWidth, newHeight);
-
-        rendererRef.current.setSize(newWidth, newHeight);
-        rendererRef.current.setPixelRatio(window.devicePixelRatio);
     }, []);
 
 
     useEffect(() => {
         const currentMount = mountRef.current;
-        if (currentMount) {
-            initThreeScene(currentMount);
-            window.addEventListener('resize', handleResize);
+        let mounted = true;
+
+        // Only initialize if the component is still mounted
+        if (currentMount && mounted) {
+            try {
+                initThreeScene(currentMount);
+                window.addEventListener('resize', handleResize);
+            } catch (error) {
+                console.error("Error initializing Three.js scene:", error);
+            }
         }
 
         return () => {
+            mounted = false;
             if (animationFrameId.current) {
                 cancelAnimationFrame(animationFrameId.current);
+                animationFrameId.current = null;
             }
             window.removeEventListener('resize', handleResize);
             
-            if (shaderMaterialRef.current) shaderMaterialRef.current.dispose();
-            if (backgroundPlaneRef.current && backgroundPlaneRef.current.geometry) {
-                backgroundPlaneRef.current.geometry.dispose();
-            }
-            
-            if (sceneRef.current) {
-                // Dispose of all objects in the scene
-                sceneRef.current.traverse((object) => {
-                    if (!object.isMesh) return;
-                    if (object.geometry) object.geometry.dispose();
-                    if (object.material) {
-                        if (Array.isArray(object.material)) {
-                            object.material.forEach(material => material.dispose());
-                        } else {
-                            object.material.dispose();
-                        }
-                    }
-                });
-                sceneRef.current.clear(); // Clear the scene
-            }
-
-            if (rendererRef.current) {
-                // Safely remove the canvas element if it exists and is a child of currentMount
-                if (rendererRef.current.domElement && currentMount && currentMount.contains(rendererRef.current.domElement)) {
-                     currentMount.removeChild(rendererRef.current.domElement);
+            // Properly dispose of Three.js resources to prevent memory leaks
+            try {
+                if (shaderMaterialRef.current) {
+                    shaderMaterialRef.current.dispose();
+                    shaderMaterialRef.current = null;
                 }
-                rendererRef.current.dispose();
-                rendererRef.current = null;
+                
+                if (backgroundPlaneRef.current && backgroundPlaneRef.current.geometry) {
+                    backgroundPlaneRef.current.geometry.dispose();
+                    backgroundPlaneRef.current = null;
+                }
+                
+                if (sceneRef.current) {
+                    // Dispose of all objects in the scene
+                    sceneRef.current.traverse((object) => {
+                        if (!object.isMesh) return;
+                        if (object.geometry) object.geometry.dispose();
+                        if (object.material) {
+                            if (Array.isArray(object.material)) {
+                                object.material.forEach(material => material.dispose());
+                            } else {
+                                object.material.dispose();
+                            }
+                        }
+                    });
+                    sceneRef.current.clear(); // Clear the scene
+                    sceneRef.current = null;
+                }
+
+                // Handle renderer cleanup
+                if (rendererRef.current) {
+                    // Safely remove the canvas element if it exists and is a child of currentMount
+                    if (rendererRef.current.domElement && currentMount && currentMount.contains(rendererRef.current.domElement)) {
+                        currentMount.removeChild(rendererRef.current.domElement);
+                    }
+                    
+                    rendererRef.current.forceContextLoss();
+                    rendererRef.current.dispose();
+                    rendererRef.current = null;
+                }
+            } catch (error) {
+                console.error("Error during Three.js cleanup:", error);
             }
         };
     }, [initThreeScene, handleResize]);
