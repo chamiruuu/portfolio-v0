@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "../styles/NavBar.module.css";
-import { MdLightMode } from "react-icons/md";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { IoLanguage } from "react-icons/io5";
-
+import { useDarkMode } from "../hooks";
 
 import logo from "../assets/logo.svg";
 
 const NavBar = () => {
+  const [theme, toggleTheme] = useDarkMode('light');
+
   return (
     <motion.nav
       className={styles.navbar}
@@ -40,7 +42,11 @@ const NavBar = () => {
       </ul>
       <div className={styles.iconContainer}>
         <IoLanguage className={styles.icon} />
-        <MdLightMode className={styles.icon} />
+        {theme === 'light' ? (
+          <MdDarkMode className={styles.icon} onClick={toggleTheme} />
+        ) : (
+          <MdLightMode className={styles.icon} onClick={toggleTheme} />
+        )}
       </div>
     </motion.nav>
   );
