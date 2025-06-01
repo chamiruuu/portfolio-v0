@@ -9,9 +9,9 @@ const BackgroundAnimationStyles = `
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0; /* Ensure it's in the background */
-    overflow: hidden; /* Prevent scrollbars from canvas */
-    background-color: #000000; /* Fallback background, pure black */
+    z-index: 0;
+    overflow: hidden;
+    background-color: #000000;
   }
 `;
 
