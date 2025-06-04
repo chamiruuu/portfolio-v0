@@ -54,7 +54,6 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <NavBar />
-
       <section ref={heroSectionRef} className={styles.heroSection}>
         <BackgroundAnimation />
         <div className={styles.heroContent}>
